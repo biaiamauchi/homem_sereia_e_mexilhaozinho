@@ -1,7 +1,6 @@
 package mc322.lab06.bibliotecas;
 
 import mc322.lab06.componentes.Heroi;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.Random;
 import java.util.Scanner;
