@@ -23,6 +23,14 @@ public abstract class Componente {
         return coluna;
     }
 
+    public void setLinha(int linha){
+        this.linha = linha;
+    }
+
+    public void setColuna(int coluna){
+        this.coluna = coluna;
+    }
+
     public void setPreenchimento(String preenchimento){
         this.preenchimento = preenchimento;
     }
