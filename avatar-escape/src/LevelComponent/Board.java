@@ -6,7 +6,7 @@ public class Board extends Level{
     private int boardHeight
 
     public Board(int level, int boardWidth, int boardHeight){
-        super(level, false);
+        super(level, true);
         this.boardWidth = boardWidth;
         this.boardHeight = boardHeight;
 
@@ -33,5 +33,4 @@ public class Board extends Level{
     public Cell[][] getBoard() {
         return cells;
     }
-
 }
