@@ -1,9 +1,10 @@
 package LevelComponent;
+import CellComponent.*;
 
 public class Board extends Level{
     private Cell cells[][];
     private int boardWidth;
-    private int boardHeight
+    private int boardHeight;
 
     public Board(int level, int boardWidth, int boardHeight){
         super(level, true);

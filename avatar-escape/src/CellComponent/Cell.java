@@ -2,7 +2,6 @@ package CellComponent;
 import CharacterComponent.iCharacterProperties;
 
 public class Cell implements iCellProperties{
-    private iCharacterProperties;
     private Character character;
     private boolean cellVisited;
 
