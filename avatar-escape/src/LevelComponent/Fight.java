@@ -1,5 +1,7 @@
 package LevelComponent;
 
+import CharacterComponent.*;
+
 import java.util.Locale;
 import java.util.Random;
 
@@ -8,40 +10,37 @@ public class Fight extends Level{
         super(level, false);
     }
 
-    public void update(Character avatar, Character villan, String movement){
+    public void update(Aang avatar, Villans villan, String movement){
         movement.toLowerCase();
         switch (movement){
-            case 'a': //air
-                villan.life -= 10;
+            case "a": //air
+            case "f": //fire
+                villan.addScoreVida(-10);
                 break;
-            case 'e': //earth
-                avatar.life += 10;
+            case "e": //earth
+            case "w": //water
+                avatar.addScoreVida(10);
                 break;
-            case 'w': //water
-                avatar.life += 10;
-                break;
-            case 'f': //fire
-                villan.life -= 10;
         }
     }
 
-    public boolean update(Character avatar, Character villan){
+    public boolean update(Aang avatar, Villans villan){
         //true attack and false, defend
         Random movementVillan = new Random();
         boolean result = movementVillan.nextBoolean();
 
         if(result)
-            avatar.life -= 10;
+            avatar.addScoreVida(-10);
         else
-            villan.life += 10;
+            villan.addScoreVida(10);
 
         return result;
     }
 
-    public int fightContinues(Character avatar, Character villan){
-        if(avatar.life > 0 && villan.life > 0)
+    public int fightContinues(Aang avatar, Villans villan){
+        if(avatar.getScoreVida() > 0 && villan.getScoreVida() > 0)
             return 0;
-        else if(avatar.life <= 0)
+        else if(avatar.getScoreVida() <= 0)
             return 1;
         else //villan.life <= 0
             return 2;
