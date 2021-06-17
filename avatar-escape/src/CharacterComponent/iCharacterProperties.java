@@ -1,15 +1,27 @@
 package CharacterComponent;
 
 public interface iCharacterProperties {
-    String getCharacter();
+    public String getCharacter();
 
-    int getLinha();
+    public int getLine();
 
-    int getColuna();
+    public int getCollumn();
 
-    void setCharacter(String character);
+    public void setCharacter(String character);
 
-    void setLinha(int linha);
+    public void setLine(int line);
 
-    void setColuna(int coluna);
+    public void setCollumn(int collumn);
+
+    public void setScore(int score);
+
+    public int getScore();
+
+    public void setLife(int life);
+
+    public int getLife();
+
+    public void addScore(int score);
+
+    public void addLife(int life);
 }
