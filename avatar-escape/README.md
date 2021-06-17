@@ -64,107 +64,154 @@ Este é o diagrama compondo componentes para análise:
 
 ![Diagrama Componentes](../arquivos-apresentacao/modelo-composicao.jpg)
 
-## Componente `Level`
+## Componente `GraphController`
 
-> Demonimamos como componente level um conjunto de classes e interfaces descritas a seguir. Este componente é responsável por agregar as células de um tabuleiro e seus atributos ou a criação da luta com o vilão da fase.
+> Ainda iremos fazer, mas demonimamos como componente graphController a classe descrita a seguir. Este componente é responsável pelo controle dos gráficos do jogo.
 
-![Componente](../arquivos-apresentacao/level.jpg)
-
-**Ficha Técnica**
-
-item | Detalhamento
------ | -----
-Classe | `src.LevelComponent`
-Autores | `Beatriz Iamauchi Barroso` <br> `Pedro Igor Salvador Alves`
-Interfaces | `iBoardProperties` <br> `iFightProperties`
-
-### Interfaces
-
-Interfaces associadas a esse componente:
-
-![Diagrama Interfaces](../arquivos-apresentacao/Level-Component.jpeg)
-
-## Componente `Level`
-
-> Demonimamos como componente level um conjunto de classes e interfaces descritas a seguir. Este componente é responsável por agregar as células de um tabuleiro e seus atributos ou a criação da luta com o vilão da fase.
-
-![Componente](../arquivos-apresentacao/level.jpg)
+![Componente](../arquivos-apresentacao/graphController.jpg)
 
 **Ficha Técnica**
 
 item | Detalhamento
 ----- | -----
-Classe | `src.LevelComponent`
+Classe | `src.GraphControllerComponent`
 Autores | `Beatriz Iamauchi Barroso` <br> `Pedro Igor Salvador Alves`
-Interfaces | `iBoardProperties` <br> `iFightProperties`
+Interfaces | 
 
 ### Interfaces
 
 Interfaces associadas a esse componente:
 
-![Diagrama Interfaces](../arquivos-apresentacao/Level-Component.jpeg)
+`Não há interfaces atreladas a este componente.`
+
+## Componente `GameController`
+
+> Demonimamos como componente gameController uma classe e uma interface descrita a seguir. Este componente é responsável pelo controle geral do jogo.
+
+![Componente](../arquivos-apresentacao/gameController.jpg)
+
+**Ficha Técnica**
+
+item | Detalhamento
+----- | -----
+Classe | `src.GameControllerComponent`
+Autores | `Beatriz Iamauchi Barroso` <br> `Pedro Igor Salvador Alves`
+Interfaces | `iControllerProperties`
+
+### Interfaces
+
+Interfaces associadas a esse componente:
+
+![Diagrama Interfaces](../arquivos-apresentacao/GameController-Component.jpeg)
+
+## Componente `Cell`
+
+> Demonimamos como componente cell uma classe e uma interface descrita a seguir. Este componente é responsável por agregar um personagem do jogo e seus atributos.
+
+![Componente](../arquivos-apresentacao/cell.jpg)
+
+**Ficha Técnica**
+
+item | Detalhamento
+----- | -----
+Classe | `src.CellComponent`
+Autores | `Beatriz Iamauchi Barroso` <br> `Pedro Igor Salvador Alves`
+Interfaces | `iCellProperties`
+
+### Interfaces
+
+Interfaces associadas a esse componente:
+
+![Diagrama Interfaces](../arquivos-apresentacao/Cell-Component.jpeg)
+
+## Componente `Character`
+
+> Demonimamos como componente character uma classe e uma interface descrita a seguir. Este componente é responsável por agregar as informações de cada personagem do jogo, como nome, dano, etc.
+
+![Componente](../arquivos-apresentacao/character.jpg)
+
+**Ficha Técnica**
+
+item | Detalhamento
+----- | -----
+Classe | `src.CharacterComponent`
+Autores | `Beatriz Iamauchi Barroso` <br> `Pedro Igor Salvador Alves`
+Interfaces | `iCharacterProperties`
+
+### Interfaces
+
+Interfaces associadas a esse componente:
+
+![Diagrama Interfaces](../arquivos-apresentacao/Character-Component.jpeg)
 
 ## Detalhamento das Interfaces
 
-### Interface `<nome da interface>`
+### Interface `iCellproperties`
 
-`<Resumo do papel da interface.>`
-
-~~~
-<Interface em Java.>
-~~~
-
-Método | Objetivo
--------| --------
-`<id do método em Java>` | `<objetivo do método e descrição dos parâmetros>`
-
-## Exemplo:
-
-### Interface `ITableProducer`
-
-Interface provida por qualquer fonte de dados que os forneça na forma de uma tabela.
-
+Define e altera o personagem da célula, assim como informa se a célula ja foi visitada ou não.
 ~~~java
-public interface ITableProducer {
-  String[] requestAttributes();
-  String[][] requestInstances();
+public interface iCellProperties {
+    iCharacterProperties getCharacter();
+    void setCharacter(iCharacterProperties character);
+    boolean getCellVisited();
+    void setCellVisited(boolean cellVisited);
 }
 ~~~
 
 Método | Objetivo
 -------| --------
-`requestAttributes` | Retorna um vetor com o nome de todos os atributos (colunas) da tabela.
-`requestInstances` | Retorna uma matriz em que cada linha representa uma instância e cada coluna o valor do respectivo atributo (a ordem dos atributos é a mesma daquela fornecida por `requestAttributes`.
+`getCharacter` | Retorna o personagem que está na célula.
+`setCharacter` | Altera o personagem que está na célula.
+`getCellVisited` | Informa se a célula já foi visitada ou não.
+`setCellVisited` | Altera a informação de se a célula já foi visitada ou não.
 
-### Interface `IDataSetProperties`
+### Interface `iCharacterproperties`
 
-Define o recurso (usualmente o caminho para um arquivo em disco) que é a fonte de dados.
-
+Informa e altera os atributos de um personagem.
 ~~~java
-public interface IDataSetProperties {
-  public String getDataSource();
-  public void setDataSource(String dataSource);
+public interface iCharacterProperties {
+    public String getCharacter();
+    public void setCharacter(String character);
+    public int getLine();
+    public void setLine(int line);
+    public int getCollumn();
+    public void setCollumn(int collumn);
+    public int getScore();
+    public void setScore(int score);
+    public int getLife();
+    public void setLife(int life);
+    public void addScore(int score);
+    public void addLife(int life);
 }
 ~~~
 
 Método | Objetivo
 -------| --------
-`getDataSource` | Retorna o caminho da fonte de dados.
-`setDataSource` | Define o caminho da fonte de dados, informado através do parâmetro `dataSource`.
+`getCharacter` | Retorna o nome personagem que está na célula.
+`setCharacter` | Altera o nome personagem que está na célula.
+`getLine` | Retorna a linha que o personagem se encontra.
+`setLine` | Altera a linha que o personagem se encontra.
+`getCollumn` | Retorna a coluna que o personagem se encontra.
+`setCollumn` | Altera a coluna que o personagem se encontra.
+`getScore` | Retorna o quanto o personagem altera o Estado Avatar do Aang.
+`setScore` | Altera o quanto o personagem altera o Estado Avatar do Aang.
+`getLife` | Retorna o quanto o personagem altera a Vida do Aang.
+`setLife` | Altera o quanto o personagem altera a Vida do Aang.
+`addScore` | Altera o indicador de Estado Avatar do Aang.
+`addLife` | Altera o indicador de Vida do Aang.
 
 # Plano de Exceções
 
 ## Diagrama da hierarquia de exceções
-`<Elabore um diagrama com a hierarquia de exceções como detalhado abaixo>`
 
-![Hierarquia Exceções](exception-hierarchy.png)
+![Hierarquia Exceções](../arquivos-apresentacao/Exception-hierarchy.jpeg)
 
 ## Descrição das classes de exceção
 
-`<Monte uma tabela descritiva seguindo o exemplo>:`
 
 Classe | Descrição
 ----- | -----
-DivisaoInvalida | Engloba todas as exceções de divisões não aceitas.
-DivisaoInutil | Indica que a divisão por 1 é inútil.
-DivisaoNaoInteira | Indica uma divisão não inteira.
+InvalidAction | Engloba todas as exceções de ações não aceitas.
+InvalidMovement | Indica que o movimento para fora do tabuleiro é inútil.
+InvalidCommand | Indica a ação feita com uma tecla inválida é inútil na fase de tabuleiro.
+InvalidAttack | Indica a ação feita com uma tecla inválida é inútil na fase de batalha com vilão.
