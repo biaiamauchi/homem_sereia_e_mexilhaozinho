@@ -36,19 +36,19 @@ Aqui ficarão as mídias do projeto: vídeo, imagens, animações, slides etc.
 
 > O Avatar Aang precisa manter o equílibro, no entanto, a Nação do Fogo possui outros planos. Aang precisa passar por alguns de seus inimigos, com a ajuda de seus amigos, até enfrentar o Senhor do Fogo Ozai e, finalmente, acabar com a tirania da Nação do Fogo sobre o mundo.
 
-# Equipe
+# Equipe: Homem-Sereia e Mexilhãozinho
 * `Beatriz Iamauchi Barroso` - `166531`
 * `Pedro Igor Salvador Alves` - `187044`
 
 # Vídeos do Projeto
 
 ## Vídeo da Prévia
-> <Coloque um link para o vídeo da prévia do projeto.>
+[Link para o Vídeo da Prévia do Jogo](../arquivos-apresentacao/Video-Previa.mp4)
 
 # Slides do Projeto
 
 ## Slides da Prévia
-`<Coloque um link para os slides da prévia do projeto.>`
+[Link para os Slides da Prévia do Jogo](../arquivos-apresentacao/Slides-Previa.pdf)
 
 # Documentação dos Componentes
 
@@ -56,55 +56,53 @@ Aqui ficarão as mídias do projeto: vídeo, imagens, animações, slides etc.
 
 ## Diagrama Geral do Projeto
 
-> <Faça uma breve descrição do diagrama.>
+![Diagrama Geral](../arquivos-apresentacao/arquitetura-geral.jpeg)
 
 ## Diagrama Geral de Componentes
 
-### Exemplo 1
-
 Este é o diagrama compondo componentes para análise:
 
-![Diagrama Analise](diagrama-componentes-analise.png)
+![Diagrama Componentes](../arquivos-apresentacao/modelo-composicao.jpg)
 
-### Exemplo 2
+## Componente `Level`
 
-Este é um diagrama inicial do projeto de jogos:
+> Demonimamos como componente level um conjunto de classes e interfaces descritas a seguir. Este componente é responsável por agregar as células de um tabuleiro e seus atributos ou a criação da luta com o vilão da fase.
 
-![Diagrama Jogos](diagrama-componentes-jogos.png)
-
-### Exemplo 3
-
-Este é outro diagrama de um projeto de vendas:
-
-![Diagrama Vendas](diagrama-componentes-vendas.png)
-
-Para cada componente será apresentado um documento conforme o modelo a seguir:
-
-## Componente `<Nome do Componente>`
-
-> <Resumo do papel do componente e serviços que ele oferece.>
-
-![Componente](diagrama-componente.png)
+![Componente](../arquivos-apresentacao/level.jpg)
 
 **Ficha Técnica**
-item | detalhamento
+
+item | Detalhamento
 ----- | -----
-Classe | `<caminho completo da classe com pacotes>` <br> Exemplo: `pt.c08componentes.s20catalog.s10ds.DataSetComponent`
-Autores | `<nome dos membros que criaram o componente>`
-Interfaces | `<listagem das interfaces do componente>`
+Classe | `src.LevelComponent`
+Autores | `Beatriz Iamauchi Barroso` <br> `Pedro Igor Salvador Alves`
+Interfaces | `iBoardProperties` <br> `iFightProperties`
 
 ### Interfaces
 
 Interfaces associadas a esse componente:
 
-![Diagrama Interfaces](diagrama-interfaces.png)
+![Diagrama Interfaces](../arquivos-apresentacao/Level-Component.jpeg)
 
-Interface agregadora do componente em Java:
+## Componente `Level`
 
-~~~java
-public interface IDataSet extends ITableProducer, IDataSetProperties {
-}
-~~~
+> Demonimamos como componente level um conjunto de classes e interfaces descritas a seguir. Este componente é responsável por agregar as células de um tabuleiro e seus atributos ou a criação da luta com o vilão da fase.
+
+![Componente](../arquivos-apresentacao/level.jpg)
+
+**Ficha Técnica**
+
+item | Detalhamento
+----- | -----
+Classe | `src.LevelComponent`
+Autores | `Beatriz Iamauchi Barroso` <br> `Pedro Igor Salvador Alves`
+Interfaces | `iBoardProperties` <br> `iFightProperties`
+
+### Interfaces
+
+Interfaces associadas a esse componente:
+
+![Diagrama Interfaces](../arquivos-apresentacao/Level-Component.jpeg)
 
 ## Detalhamento das Interfaces
 
