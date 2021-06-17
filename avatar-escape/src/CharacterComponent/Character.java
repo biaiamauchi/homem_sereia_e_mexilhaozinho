@@ -2,36 +2,52 @@ package CharacterComponent;
 
 public class Character implements iCharacterProperties{
     private String character;
-    private int linha;
-    private int coluna;
+    private int line;
+    private int collumn;
+    private int score;
+    private int life;
 
-    public Character(String character, int linha, int coluna){
-        this.linha = linha;
-        this.coluna = coluna;
+    public Character(String character, int line, int collumn, int score, int life){
+        this.line = line;
+        this.collumn = collumn;
         this.character = character;
+        this.score = score;
+        this.life = life;
     }
 
     public String getCharacter(){
         return character;
     }
 
-    public int getLinha(){
-        return linha;
+    public int getLine(){
+        return line;
     }
 
-    public int getColuna(){
-        return coluna;
+    public int getCollumn(){
+        return collumn;
     }
 
     public void setCharacter(String character){
         this.character = character;
     }
 
-    public void setLinha(int linha){
-        this.linha = linha;
+    public void setLine(int line){
+        this.line = line;
     }
 
-    public void setColuna(int coluna){
-        this.coluna = coluna;
+    public void setCollumn(int collumn){
+        this.collumn = collumn;
     }
+
+    public void setScore(int score){ this.score = score; }
+
+    public int getScore(){ return this.score; }
+
+    public void setLife(int life){ this.life = life; }
+
+    public int getLife(){ return this.life; }
+
+    public void addScore(int score) { this.score += score; }
+
+    public void addLife(int life) { this.life += life; }
 }

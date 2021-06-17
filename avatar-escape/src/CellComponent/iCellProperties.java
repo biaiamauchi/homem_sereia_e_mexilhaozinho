@@ -1,9 +1,11 @@
 package CellComponent;
 
-public interface iCellProperties {
-    Character getCharacter();
+import CharacterComponent.iCharacterProperties;
 
-    void setCharacter(Character character);
+public interface iCellProperties {
+    iCharacterProperties getCharacter();
+
+    void setCharacter(iCharacterProperties character);
 
     boolean getCellVisited();
 

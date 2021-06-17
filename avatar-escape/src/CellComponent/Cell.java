@@ -2,18 +2,18 @@ package CellComponent;
 import CharacterComponent.iCharacterProperties;
 
 public class Cell implements iCellProperties{
-    private Character character;
+    private iCharacterProperties character;
     private boolean cellVisited;
 
-    public Cell(Character character){
+    public Cell(iCharacterProperties character){
         this.character = character;
     }
 
-    public Character getCharacter(){
+    public iCharacterProperties getCharacter(){
         return character;
     }
 
-    public void setCharacter(Character character){
+    public void setCharacter(iCharacterProperties character){
         this.character = character;
     }
 

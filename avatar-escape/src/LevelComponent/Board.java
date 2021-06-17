@@ -1,13 +1,15 @@
 package LevelComponent;
 import CellComponent.*;
+import CharacterComponent.iCharacterProperties;
 
-public class Board extends Level{
-    private Cell cells[][];
+public class Board implements iBoardProperties {
+    private int level;
+    private iCellProperties cells[][];
     private int boardWidth;
     private int boardHeight;
 
     public Board(int level, int boardWidth, int boardHeight){
-        super(level, true);
+        this.level = level;
         this.boardWidth = boardWidth;
         this.boardHeight = boardHeight;
 
@@ -19,19 +21,29 @@ public class Board extends Level{
         }
     }
 
-    public void setCellBoard(Character character, int line, int collumn){
+    public void setCellBoard(iCharacterProperties character, int line, int collumn){
         cells[line][collumn].setCharacter(character);
     }
 
-    public Character getCellBoard(int line, int collumn){
+    public iCharacterProperties getCellBoard(int line, int collumn){
         return cells[line][collumn].getCharacter();
     }
 
-    public Cell getCell(int line, int collumn){
+    public iCellProperties getCell(int line, int collumn){
         return cells[line][collumn];
     }
 
-    public Cell[][] getBoard() {
+    public iCellProperties[][] getBoard() {
         return cells;
+    }
+
+    @Override
+    public int getLevel() {
+        return this.level;
+    }
+
+    @Override
+    public void setLevel(int level) {
+        this.level = level;
     }
 }
