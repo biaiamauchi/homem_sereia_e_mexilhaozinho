@@ -6,6 +6,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
+import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
@@ -25,10 +26,12 @@ public class Main extends Application {
         painelInfo.getChildren().addAll(new Rectangle(300,600,Color.BLUE));
         painelInfo.setAlignment(Pos.CENTER_RIGHT);
 
-        BackgroundImage fundo = new BackgroundImage(new Image("../../assets/backgrounds/junina.jpeg"), null, null, null, null);
+        Image imagem = new Image(String.valueOf(getClass().getResource("/assets/junina.jpg")));
+        BackgroundImage fundo = new BackgroundImage(imagem, null, null, null, null);
 
         StackPane tabuleiro = new StackPane();
         tabuleiro.getChildren().addAll(new Rectangle(900,600,Color.GRAY));
+        tabuleiro.setBackground(new Background(fundo));
         tabuleiro.setAlignment(Pos.CENTER_LEFT);
 
         return new StackPane(painelInfo, tabuleiro);
