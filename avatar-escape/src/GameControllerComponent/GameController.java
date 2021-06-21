@@ -9,8 +9,9 @@ public class GameController implements iGameControllerProperties{
     private String message = "";
     private int level;
 
-    public GameController(int level, boolean cellsNeeded){
-        game = new Builder(level, cellsNeeded);
+    public GameController(){
+        this.game = new Builder(1, true);
+        this.level = 1;
     }
 
     public boolean getIsGameFinalized(){
@@ -19,5 +20,9 @@ public class GameController implements iGameControllerProperties{
 
     public void setIsGameFinalizado(boolean isGameFinalized){
         this.isGameFinalized = isGameFinalized;
+    }
+
+    public void play(String CSV){
+        game.build(CSV);
     }
 }
