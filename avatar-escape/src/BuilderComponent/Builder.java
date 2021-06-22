@@ -40,27 +40,27 @@ public class Builder implements iBuilderProperties{
 
             for (int i = 0; i < boardWidth; i++) {
                 if(commands[i][1].equals("A")) {
-                    iCharacterProperties aang = new Aang("A", i, i%4, 100, 50);
-                    board.setCellBoard(aang, i, i%6);
+                    iCharacterProperties aang = new Aang("A", i, i % 6, 100, 50);
+                    board.setCellBoard(aang, i, i % 6);
                 }
                 else if (commands[i][1].equals("K")) {
-                    iCharacterProperties kataraSokka = new Heroes("K", i, i % 4, 100, 50);
-                    board.setCellBoard(kataraSokka, i, i%6);
+                    iCharacterProperties kataraSokka = new Heroes("K", i, i % 6, 100, 50);
+                    board.setCellBoard(kataraSokka, i, i % 6);
                 }
                 else if (commands[i][1].equals("T")) {
-                    iCharacterProperties toph = new Heroes("T", i, i % 4, 100, 50);
+                    iCharacterProperties toph = new Heroes("T", i, i % 6, 100, 50);
                     board.setCellBoard(toph, i, i % 6);
                 }
                 else if (commands[i][1].equals("Z")) {
-                    iCharacterProperties zuko = new Heroes("Z", i, i % 4, 100, 50);
+                    iCharacterProperties zuko = new Heroes("Z", i, i % 6, 100, 50);
                     board.setCellBoard(zuko, i, i % 6);
                 }
                 else if (commands[i][1].equals("S")) {
-                    iCharacterProperties sentinela = new Villans("S", i, i % 4, 100, 50);
+                    iCharacterProperties sentinela = new Villans("S", i, i % 6, 100, 50);
                     board.setCellBoard(sentinela, i, i % 6);
                 }
                 else if (commands[i][1].equals("AP")) {
-                    iCharacterProperties appa = new Heroes("AP", i, i % 4, 100, 50);
+                    iCharacterProperties appa = new Heroes("AP", i, i % 6, 100, 50);
                     board.setCellBoard(appa, i, i % 6);
                 }
                 else if (commands[i][1].equals("_")) {
@@ -68,6 +68,7 @@ public class Builder implements iBuilderProperties{
                     board.setCellBoard(vazio, i, i % 6);
                 }
             }
+
         }
     }
 }

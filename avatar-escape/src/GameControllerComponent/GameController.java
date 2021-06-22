@@ -24,5 +24,9 @@ public class GameController implements iGameControllerProperties{
 
     public void play(String CSV){
         game.build(CSV);
+
+        while(getIsGameFinalized()){
+            //tecla
+        }
     }
 }
