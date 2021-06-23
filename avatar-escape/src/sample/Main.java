@@ -25,6 +25,8 @@ import javafx.stage.Stage;
 import java.awt.*;
 import javafx.scene.shape.Rectangle;
 import java.lang.Object;
+import java.security.Principal;
+
 import javafx.scene.control.Label;
 
 import javafx.scene.paint.Color;
@@ -33,6 +35,7 @@ import javafx.geometry.Insets;
 
 
 public class Main extends Application {
+    private static Stage stage;
     private ImageView avatar;
     private ProgressBar avatarLife;
     private ProgressBar avatarScore;
@@ -101,36 +104,39 @@ public class Main extends Application {
         return board;
     }
 
-    public Scene instructionsScreen(){
-
-        Scene instructions = new Scene();
-    }
-
     @Override
-    public void start(Stage stage) throws Exception{
+    public void start(Stage stage) {
         //Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
         stage.setTitle("Avatar Escape");
         criarAvatar();
 
         Group root = new Group(avatarInfo());
         Scene cena = new Scene(root, 1200, 600);
-        cena.setOnKeyPressed((new EventHandler<KeyEvent>() {
+        /*cena.setOnKeyPressed((new EventHandler<KeyEvent>() {
             public void handle(KeyEvent event) {
                 if (event.getCode() == KeyCode.DOWN) {
-                    System.out.println("Hello World");
                     avatar.setX(avatar.getX()+40);
                 }
             }
-        }));
+        }));*/
         stage.setScene(cena);
         stage.setResizable(false);
         stage.show();
+        setStage(stage);
     }
 
     public static void main(String[] args) {
         //iGameControllerProperties game = new GameController();
         //game.play("src/assets/mapa.txt");
         launch(args);
+    }
+
+    public static Stage getStage(){
+        return stage;
+    }
+
+    public static void setStage(Stage stageJ){
+        stage = stageJ;
     }
 }
 
