@@ -170,7 +170,7 @@ Interfaces associadas a esse componente:
 
 ![Diagrama Interfaces](../arquivos-apresentacao/GameController-Component.jpeg)
 
-## Componente `GraphController`
+## Componente `GraphControllerComponent`
 
 > Ainda iremos fazer, mas demonimamos como componente graphController a classe descrita a seguir. Este componente é responsável pelo controle dos gráficos do jogo.
 

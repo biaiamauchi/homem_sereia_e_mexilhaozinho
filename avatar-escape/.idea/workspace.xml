@@ -171,10 +171,11 @@
       <recent name="C:\Users\pedro\Desktop\avatar-escape\homem_sereia_e_mexilhaozinho\avatar-escape\assets\backgrounds" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\pedro\Desktop\avatar-escape\homem_sereia_e_mexilhaozinho\avatar-escape\src\GraphController" />
-      <recent name="C:\Users\pedro\Desktop\avatar-escape\homem_sereia_e_mexilhaozinho\avatar-escape\src\assets" />
-      <recent name="C:\Users\pedro\Desktop\avatar-escape\homem_sereia_e_mexilhaozinho\avatar-escape\src\assets\characters" />
-      <recent name="C:\Users\pedro\Desktop\avatar-escape\homem_sereia_e_mexilhaozinho\avatar-escape\assets" />
+      <recent name="C:\Users\pedro\Desktop\avatar-escape\homem_sereia_e_mexilhaozinho\avatar-escape\src\assets\background" />
+      <recent name="C:\Users\pedro\Desktop\avatar-escape\homem_sereia_e_mexilhaozinho\avatar-escape\src\assets\instructions" />
+      <recent name="C:\Users\pedro\Desktop\avatar-escape\homem_sereia_e_mexilhaozinho\avatar-escape\src\assets\levels" />
+      <recent name="C:\Users\pedro\Desktop\avatar-escape\homem_sereia_e_mexilhaozinho\avatar-escape\src\assets\messages" />
+      <recent name="C:\Users\pedro\Desktop\avatar-escape\homem_sereia_e_mexilhaozinho\avatar-escape\src\assets\characters\villains" />
     </key>
   </component>
   <component name="RunManager">
@@ -205,7 +206,7 @@
     </configuration>
     <configuration name="Main" type="Application" factoryName="Application">
       <option name="ALTERNATIVE_JRE_PATH" value="$USER_HOME$/Program Files/AdoptOpenJDK/jdk-15.0.2.7-hotspot" />
-      <option name="MAIN_CLASS_NAME" value="GraphController.SuportScreen" />
+      <option name="MAIN_CLASS_NAME" value="GraphControllerComponent.SuportScreen.SuportScreen" />
       <module name="avatar-escape" />
       <option name="VM_PARAMETERS" value="--module-path C:\Users\pedro\javafx-sdk-11.0.2\lib --add-modules javafx.controls,javafx.fxml" />
       <extension name="coverage">
@@ -318,17 +319,6 @@
   <component name="VcsManagerConfiguration">
     <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="true" />
     <option name="INCLUDE_TEXT_INTO_SHELF" value="false" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/GraphController/SuportScreen.java</url>
-          <line>23</line>
-          <option name="timeStamp" value="7" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/avatar_escape$Main.ic" NAME="Main Coverage Results" MODIFIED="1624423237953" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">

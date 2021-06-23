@@ -1,37 +1,20 @@
 package sample;
 
-import GameControllerComponent.GameController;
-import GameControllerComponent.iGameControllerProperties;
 import javafx.application.Application;
-import javafx.event.EventHandler;
-import javafx.event.EventType;
-import javafx.fxml.FXMLLoader;
-import javafx.geometry.Pos;
 import javafx.scene.Group;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.ProgressIndicator;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.*;
 import javafx.scene.text.Font;
-import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 
-import java.awt.*;
 import javafx.scene.shape.Rectangle;
-import java.lang.Object;
-import java.security.Principal;
 
 import javafx.scene.control.Label;
 
 import javafx.scene.paint.Color;
 import javafx.scene.control.ProgressBar;
-import javafx.geometry.Insets;
 
 
 public class Main extends Application {
@@ -42,7 +25,7 @@ public class Main extends Application {
     private Label message;
 
     public void criarAvatar(){
-        Image avatarImagem = new Image(String.valueOf(getClass().getResource("/assets/Aang.png")));
+        Image avatarImagem = new Image(String.valueOf(getClass().getResource("/assets/characters/heroes/Aang.png")));
         this.avatar = new ImageView(avatarImagem);
         avatar.setX(20);
         avatar.setY(20);

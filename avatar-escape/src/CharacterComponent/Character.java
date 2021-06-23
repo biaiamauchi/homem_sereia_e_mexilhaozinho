@@ -1,6 +1,6 @@
 package CharacterComponent;
 
-public class Character implements iCharacterProperties{
+public abstract class Character implements iCharacterProperties{
     private String character;
     private int line;
     private int collumn;

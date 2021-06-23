@@ -1,5 +1,8 @@
-package GraphController;
+package GraphControllerComponent.SuportScreen;
 
+import GraphControllerComponent.BoardScreen.BoardScreen;
+import GraphControllerComponent.SuportScreen.SuportScreen;
+import LevelComponent.Board;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -15,21 +18,9 @@ import sample.Main;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class SuportScreenController implements Initializable {
-    @FXML private Button btnJogar;
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        //btnJogar.setTranslateX(50);
-
-        btnJogar.setOnMouseClicked((MouseEvent ex) -> {
-                System.out.println("Entrei");
-        });
-    }
-
-
+public class SuportScreenController {
     public Scene instructionsScreen(){
-        Image instructionsImage = new Image(String.valueOf(getClass().getResource("/assets/instructions.png")));
+        Image instructionsImage = new Image(String.valueOf(getClass().getResource("/assets/instructions/gameInstructions.png")));
         ImageView imageInstructions = new ImageView(instructionsImage);
         Group image = new Group(imageInstructions);
         imageInstructions.setFitWidth(350);
@@ -47,9 +38,9 @@ public class SuportScreenController implements Initializable {
             @Override
             public void handle(javafx.scene.input.MouseEvent e) {
                 SuportScreen.getStage().close();
-                Main fase = new Main();
+                BoardScreen board = new BoardScreen();
                 try {
-                    fase.start(new Stage());
+                    board.start(new Stage());
                 } catch (Exception ex){
                     //pass
                 }

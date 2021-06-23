@@ -1,17 +1,8 @@
-package GraphController;
+package GraphControllerComponent.SuportScreen;
 
 import javafx.application.Application;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
-
-import java.io.IOException;
-import java.net.URL;
 
 public class SuportScreen extends Application {
     private static Stage stage;
@@ -21,9 +12,9 @@ public class SuportScreen extends Application {
     }
 
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
         stage.setTitle("Fase 1");
-        stage.setScene(new Scene(root, 1200, 600));
+        Scene tela = new SuportScreenController().instructionsScreen();
+        stage.setScene(tela);
         stage.show();
         setStage(stage);
     }
