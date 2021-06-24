@@ -1,5 +1,7 @@
 package CharacterComponent;
 
+import javafx.scene.image.ImageView;
+
 public class Villans extends Character{
     public Villans(String character, int line, int collumn, int score, int life){
         super(character, line, collumn, score, life);

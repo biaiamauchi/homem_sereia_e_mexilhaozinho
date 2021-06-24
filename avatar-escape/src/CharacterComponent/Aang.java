@@ -1,5 +1,7 @@
 package CharacterComponent;
 
+import javafx.scene.image.ImageView;
+
 public class Aang extends Character{
     private boolean proximaFase;
     private boolean venceVilao;
