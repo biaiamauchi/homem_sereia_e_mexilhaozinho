@@ -1,11 +1,11 @@
-package GraphControllerComponent.SuportScreen;
+package GraphControllerComponent.FightScreen;
 
-import GraphControllerComponent.iGraphControllerProperties;
+import GraphControllerComponent.SuportScreen.SuportScreenController;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class SuportScreen extends Application {
+public class FightScreen extends Application {
     private static Stage stage;
 
     public static void Main(String[] args){
@@ -14,7 +14,7 @@ public class SuportScreen extends Application {
 
     public void start(Stage stage) throws Exception {
         stage.setTitle("Fase 1");
-        Scene tela = new SuportScreenController().instructionsScreen();
+        Scene tela = new FightScreenController().fightScreen();
         stage.setScene(tela);
         stage.show();
         setStage(stage);

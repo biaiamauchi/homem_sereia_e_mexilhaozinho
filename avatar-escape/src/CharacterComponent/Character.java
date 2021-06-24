@@ -1,5 +1,7 @@
 package CharacterComponent;
 
+import javafx.scene.image.ImageView;
+
 public abstract class Character implements iCharacterProperties{
     private String character;
     private int line;

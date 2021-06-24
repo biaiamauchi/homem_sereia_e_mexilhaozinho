@@ -1,5 +1,6 @@
 package GraphControllerComponent.BoardScreen;
 
+import GraphControllerComponent.SuportScreen.SuportScreenController;
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -14,6 +15,7 @@ public class BoardScreen extends Application {
         stage.setScene(new BoardScreenController().boardScreen());
         stage.setResizable(false);
         stage.show();
+        //stage.setScene(new SuportScreenController().instructionsScreen());
         setStage(stage);
     }
 

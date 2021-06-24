@@ -11,6 +11,7 @@
       <entry name="!?*.kt" />
       <entry name="!?*.clj" />
       <entry name="!?*.fxml" />
+      <entry name="!?*.csv" />
     </wildcardResourcePatterns>
   </component>
 </project>

@@ -1,5 +1,9 @@
 package GraphControllerComponent.BoardScreen;
 
+import CharacterComponent.Villans;
+import GameControllerComponent.GameController;
+import GameControllerComponent.iGameControllerProperties;
+import GraphControllerComponent.FightScreen.FightScreen;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -13,18 +17,24 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
+import javafx.stage.Stage;
 
-public class BoardScreenController {
+public class BoardScreenController extends GameController {
+    private ImageView boardCharacters[][] = new ImageView[6][6];
     private ImageView avatar;
     private ProgressBar avatarLife;
     private ProgressBar avatarScore;
+    private Label avatarLifeLabel;
+    private Label avatarScoreLabel;
     private Label message;
+    private iGameControllerProperties game = new GameController();
 
     public void criarAvatar(){
         Image avatarImagem = new Image(String.valueOf(getClass().getResource("/assets/characters/heroes/Aang.png")));
-        this.avatar = new ImageView(avatarImagem);
-        avatar.setX(35); //anda 150 horizontalmente
-        avatar.setY(10); //anda 100 verticalmente
+        this.boardCharacters[1][1] = new ImageView(avatarImagem);
+        this.boardCharacters[1][1].setX(35); //anda 150 horizontalmente
+        this.boardCharacters[1][1].setY(10); //anda 100 verticalmente
+        this.avatar = boardCharacters[1][1];
     }
 
     public void criarAvatarLife(){
@@ -33,6 +43,10 @@ public class BoardScreenController {
         this.avatarLife.setMaxWidth(100);
         this.avatarLife.setTranslateX(100);
         this.avatarLife.setTranslateY(100);
+
+        String text = "Vida - " + (int)(this.avatarLife.getProgress()*100) + "%";
+        this.avatarLifeLabel = label(text, 105, 75);
+        this.avatarLifeLabel.setFont(new Font("Inter", 18));
     }
 
     public void criarAvatarScore(){
@@ -41,6 +55,10 @@ public class BoardScreenController {
         this.avatarScore.setMaxWidth(100);
         this.avatarScore.setTranslateX(100);
         this.avatarScore.setTranslateY(175);
+
+        String text = "Estado Avatar - " + (int)(this.avatarScore.getProgress()*100) + "%";
+        avatarScoreLabel = label(text, 75, 150);
+        avatarScoreLabel.setFont(new Font("Inter", 18));
     }
 
     public Group avatarInfo(){
@@ -48,15 +66,7 @@ public class BoardScreenController {
         criarAvatarScore();
         Rectangle fundo = new Rectangle(300, 600, Color.GRAY);
 
-        String text = "Vida - " + (int)(this.avatarLife.getProgress()*100) + "%";
-        Label labelLife = label(text, 105, 75);
-        labelLife.setFont(new Font("Inter", 18));
-
-        text = "Estado Avatar - " + (int)(this.avatarScore.getProgress()*100) + "%";
-        Label labelScore = label(text, 75, 150);
-        labelScore.setFont(new Font("Inter", 18));
-
-        Group info = new Group(this.avatarLife, this.avatarScore, labelLife, labelScore);
+        Group info = new Group(this.avatarLife, this.avatarScore, this.avatarLifeLabel, this.avatarScoreLabel);
 
         this.message = label("", 50, 300);
         this.message.setFont(new Font("Inter", 16));
@@ -85,32 +95,106 @@ public class BoardScreenController {
         ImageView gridView = new ImageView(grid);
 
         Group board = new Group(backgroundView, gridView);
+
+        fillBoard(board);
+
         board.minWidth(900);
         board.minHeight(600);
 
-        //board.setTranslateY(100);
-
         return board;
+    }
+
+    public ImageView[][] fillBoard(Group group) {
+        this.game.play("src/assets/maps/level1/mapa.csv");
+        ImageView[][] characters = new ImageView[6][6];
+
+        boolean keep = false;
+        for(int i = 0; i < game.getBoard().getBoardHeight(); i++){
+            for(int j = 0; j < game.getBoard().getBoardWidth(); j++){
+                if(keep){
+                    if(game.getBoard().getBoard().getBoard()[i][j].getCharacter() != null){
+                        characters[i][j] = new ImageView(new Image(game.getBoard().getBoard().getBoard()[i][j].getCharacter().getCharacter()));
+                        if(game.getBoard().getBoard().getBoard()[i][j].getCharacter() instanceof Villans){
+                            characters[i][j].setX(30+150*(j));
+                            characters[i][j].setY(5+100*(i));
+                        }
+                        else{
+                            characters[i][j].setX(35+150*(j));
+                            characters[i][j].setY(10+100*(i));
+                        }
+                        group.getChildren().addAll(characters[i][j]);
+                    }
+                }
+                keep = true;
+            }
+        }
+
+        return characters;
     }
 
     public Scene boardScreen(){
         criarAvatar();
 
-        Group root = new Group(board(), this.avatar,avatarInfo());
+        Group root = new Group(board(), this.avatar, avatarInfo());
         Scene cena = new Scene(root, 1200, 600);
         cena.setOnKeyPressed((new EventHandler<KeyEvent>() {
             public void handle(KeyEvent event) {
+                message.setText("");
                 if (event.getCode() == KeyCode.DOWN) {
-                    avatar.setY(avatar.getY()+100);
+                    if(avatar.getY() >= 10 && avatar.getY() < 510)
+                        avatar.setY(avatar.getY()+100);
+                    else
+                        message.setText("Ande no tabuleiro!");
                 }
                 else if (event.getCode() == KeyCode.UP) {
-                    avatar.setY(avatar.getY()-100);
+                    if(avatar.getY() > 10 && avatar.getY() <= 510)
+                        avatar.setY(avatar.getY()-100);
+                    else
+                        message.setText("Ande no tabuleiro!");
                 }
                 else if (event.getCode() == KeyCode.LEFT) {
-                    avatar.setX(avatar.getX()-150);
+                    if(avatar.getX() > 35 && avatar.getX() <= 785)
+                        avatar.setX(avatar.getX()-150);
+                    else
+                        message.setText("Ande no tabuleiro!");
                 }
                 else if (event.getCode() == KeyCode.RIGHT) {
-                    avatar.setX(avatar.getX()+150);
+                    if(avatar.getX() >= 35 && avatar.getX() < 785)
+                        avatar.setX(avatar.getX()+150);
+                    else
+                        message.setText("Ande no tabuleiro!");
+                }
+                else
+                    message.setText("Tecla inválida");
+
+                int newLine = (int)(avatar.getY()/100);
+                int newCollumn = (int)(avatar.getX()/150);
+
+                if(game.getBoard().getBoard().getBoard()[newLine][newCollumn].getCharacter() != null){
+                    if(game.getBoard().getBoard().getBoard()[newLine][newCollumn].getCharacter() instanceof Villans) {
+                        message.setText("-5% de Vida\n" +
+                                "Você não pode ficar aí, tem um sentinela do fogo!");
+                        avatarLife.setProgress(avatarLife.getProgress()-0.05F);
+                        avatarLifeLabel.setText("Vida - " + (int)(avatarLife.getProgress()*100) + "%");
+                    }
+                    else{
+                        if(game.getBoard().getBoard().getLevel() == 1 && newLine != game.getBoard().getBoardHeight() - 1 && newCollumn != game.getBoard().getBoardWidth()
+                                && newLine != 0 && newCollumn != 0){
+                            message.setText("+25% de Vida\n" +
+                                    "Você encontrou a Katara e o Sokka!");
+                            avatarLife.setProgress(avatarLife.getProgress()+0.25F);
+                            avatarLifeLabel.setText("Vida - " + (int)(avatarLife.getProgress()*100) + "%");
+                        }
+                        else if(newLine == game.getBoard().getBoardHeight() - 1 && newCollumn == game.getBoard().getBoardWidth() - 1){
+                            BoardScreen.getStage().close();
+                            FightScreen fight = new FightScreen();
+                            try {
+                                fight.start(new Stage());
+                            } catch (Exception ex){
+                                //pass
+                            }
+                        }
+                    }
                 }
             }
         }));

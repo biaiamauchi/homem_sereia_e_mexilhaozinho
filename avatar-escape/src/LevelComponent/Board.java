@@ -14,8 +14,8 @@ public class Board implements iBoardProperties {
         this.boardHeight = boardHeight;
 
         this.cells = new Cell[this.boardWidth][this.boardHeight];
-        for(int i = 0; i < this.boardWidth; i++){
-            for(int j = 0; j < this.boardHeight; j++){
+        for(int i = 0; i < this.boardHeight; i++){
+            for(int j = 0; j < this.boardWidth; j++){
                 cells[i][j] = new Cell(null);
             }
         }
