@@ -71,7 +71,7 @@ public class Builder implements iBuilderProperties{
                     } else if (commands[i][1].equals("AP")) {
                         iCharacterProperties appa = new Heroes("/assets/characters/heroes/Appa.png", i/6, i%6, 100, 50);
                         board.setCellBoard(appa, i/6, i%6);
-                    } else if (commands[i][1].equals("_")) {
+                    } else if (commands[i][1].equals("-")) {
                         board.setCellBoard(null, i/6, i%6);
                     } else if (commands[i][1].equals("P")) {
                         iCharacterProperties door = new Heroes("/assets/characters/heroes/Door.png", i/6, i%6, 100, 50);
