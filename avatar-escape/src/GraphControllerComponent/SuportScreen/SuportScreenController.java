@@ -1,6 +1,7 @@
 package GraphControllerComponent.SuportScreen;
 
 import GraphControllerComponent.BoardScreen.BoardScreen;
+import GraphControllerComponent.BoardScreen.BoardScreenController;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -28,13 +29,14 @@ public class SuportScreenController {
         play.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(javafx.scene.input.MouseEvent e) {
-                SuportScreen.getStage().close();
+                SuportScreen.getStage().setScene(new BoardScreenController().boardScreen());
+                /*SuportScreen.getStage().close();
                 BoardScreen board = new BoardScreen();
                 try {
                     board.start(new Stage());
                 } catch (Exception ex){
                     //pass
-                }
+                }*/
             }
         });
 

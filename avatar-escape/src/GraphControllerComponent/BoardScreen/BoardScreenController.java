@@ -4,6 +4,7 @@ import CharacterComponent.Villans;
 import GameControllerComponent.GameController;
 import GameControllerComponent.iGameControllerProperties;
 import GraphControllerComponent.FightScreen.FightScreen;
+import GraphControllerComponent.FightScreen.FightScreenController;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -186,13 +187,13 @@ public class BoardScreenController extends GameController {
                             avatarLifeLabel.setText("Vida - " + (int)(avatarLife.getProgress()*100) + "%");
                         }
                         else if(newLine == game.getBoard().getBoardHeight() - 1 && newCollumn == game.getBoard().getBoardWidth() - 1){
-                            BoardScreen.getStage().close();
-                            FightScreen fight = new FightScreen();
+                            BoardScreen.getStage().setScene(new FightScreenController().fightScreen());
+                            /*FightScreen fight = new FightScreen();
                             try {
                                 fight.start(new Stage());
                             } catch (Exception ex){
                                 //pass
-                            }
+                            }*/
                         }
                     }
                 }
