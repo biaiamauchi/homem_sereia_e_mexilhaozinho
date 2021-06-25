@@ -3,8 +3,9 @@ package GraphControllerComponent.BoardScreen;
 import CharacterComponent.Villans;
 import GameControllerComponent.GameController;
 import GameControllerComponent.iGameControllerProperties;
-import GraphControllerComponent.FightScreen.FightScreen;
 import GraphControllerComponent.FightScreen.FightScreenController;
+import GraphControllerComponent.GraphController;
+import GraphControllerComponent.iGraphControllerProperties;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -29,6 +30,7 @@ public class BoardScreenController extends GameController {
     private Label avatarScoreLabel;
     private Label message;
     private iGameControllerProperties game = new GameController();
+    iGraphControllerProperties screen = new GraphController();
 
     public void criarAvatar(){
         Image avatarImagem = new Image(String.valueOf(getClass().getResource("/assets/characters/heroes/Aang.png")));
@@ -136,6 +138,7 @@ public class BoardScreenController extends GameController {
     public Scene boardScreen(){
         criarAvatar();
 
+        String screenName = "Fase - " + game.getBoard().getBoard().getLevel();
         Group root = new Group(board(), this.avatar, avatarInfo());
         Scene cena = new Scene(root, 1200, 600);
         cena.setOnKeyPressed((new EventHandler<KeyEvent>() {
@@ -187,13 +190,7 @@ public class BoardScreenController extends GameController {
                             avatarLifeLabel.setText("Vida - " + (int)(avatarLife.getProgress()*100) + "%");
                         }
                         else if(newLine == game.getBoard().getBoardHeight() - 1 && newCollumn == game.getBoard().getBoardWidth() - 1){
-                            BoardScreen.getStage().setScene(new FightScreenController().fightScreen());
-                            /*FightScreen fight = new FightScreen();
-                            try {
-                                fight.start(new Stage());
-                            } catch (Exception ex){
-                                //pass
-                            }*/
+                            screen.getStage().setScene(new FightScreenController().fightScreen());
                         }
                     }
                 }
