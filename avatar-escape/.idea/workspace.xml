@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="" />
+    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GraphControllerComponent/teste/prototipoFight.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GraphControllerComponent/teste/prototipoFight.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/characters/heroes/Aang.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/characters/heroes/Aang.png" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -95,7 +99,9 @@
     <option name="height" value="876" />
   </component>
   <component name="ProjectId" id="1tiWV7fYOhBgSXO3ZAE1prpdZVB" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <OptionsSetting value="false" id="Update" />
+  </component>
   <component name="ProjectReloadState">
     <option name="STATE" value="0" />
   </component>
@@ -209,7 +215,7 @@
       <option name="ALTERNATIVE_JRE_PATH" value="$USER_HOME$/Program Files/AdoptOpenJDK/jdk-15.0.2.7-hotspot" />
       <option name="MAIN_CLASS_NAME" value="GraphControllerComponent.teste.prototipoFight" />
       <module name="avatar-escape" />
-      <option name="VM_PARAMETERS" value="--module-path C:\Users\pedro\javafx-sdk-11.0.2\lib --add-modules javafx.controls,javafx.fxml" />
+      <option name="VM_PARAMETERS" value="--module-path &quot;C:\Users\biaia\Documents\2020 UNICAMP\MC322\openjfx-11.0.2_windows-x64_bin-sdk\javafx-sdk-11.0.2\lib&quot; --add-modules javafx.controls,javafx.fxml" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="sample.*" />
