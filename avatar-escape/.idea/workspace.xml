@@ -178,11 +178,11 @@
       <recent name="C:\Users\pedro\Desktop\avatar-escape\homem_sereia_e_mexilhaozinho\avatar-escape\assets\backgrounds" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\pedro\Desktop\avatar-escape\homem_sereia_e_mexilhaozinho\avatar-escape\src\assets\closeWindow" />
       <recent name="C:\Users\pedro\Desktop\avatar-escape\homem_sereia_e_mexilhaozinho\avatar-escape\src\assets\maps\level1" />
       <recent name="C:\Users\pedro\Desktop\avatar-escape\homem_sereia_e_mexilhaozinho\avatar-escape\src\assets\characters\villains" />
       <recent name="C:\Users\pedro\Desktop\avatar-escape\homem_sereia_e_mexilhaozinho\avatar-escape\src\assets\instructions" />
       <recent name="C:\Users\pedro\Desktop\avatar-escape\homem_sereia_e_mexilhaozinho\avatar-escape\src\assets\background" />
-      <recent name="C:\Users\pedro\Desktop\avatar-escape\homem_sereia_e_mexilhaozinho\avatar-escape\src\assets\levels" />
     </key>
   </component>
   <component name="RunManager">
@@ -213,7 +213,7 @@
     </configuration>
     <configuration name="Main" type="Application" factoryName="Application">
       <option name="ALTERNATIVE_JRE_PATH" value="$USER_HOME$/Program Files/AdoptOpenJDK/jdk-15.0.2.7-hotspot" />
-      <option name="MAIN_CLASS_NAME" value="GraphControllerComponent.teste.prototipoFight" />
+      <option name="MAIN_CLASS_NAME" value="GraphControllerComponent.GraphController" />
       <module name="avatar-escape" />
       <option name="VM_PARAMETERS" value="--module-path &quot;C:\Users\biaia\Documents\2020 UNICAMP\MC322\openjfx-11.0.2_windows-x64_bin-sdk\javafx-sdk-11.0.2\lib&quot; --add-modules javafx.controls,javafx.fxml" />
       <extension name="coverage">
@@ -344,10 +344,10 @@
         <watch expression="game.getBoard().getBoard().getBoard()[newLine][newCollumn].getCharacter()" />
         <watch expression="game.getBoard().getBoard().getBoard()[i][j].getCharacter()" />
         <watch expression="boardCharacters[][]" />
+        <watch expression="game.getBoard().getBoard().getBoard()[newLine][newCollumn].getCharacter().getLife()" />
+        <watch expression="(double)game.getBoard().getBoard().getBoard()[newLine][newCollumn].getCharacter().getLife()/100" />
+        <watch expression="avatarLife.getProgress()" />
       </configuration>
-      <inline-watch fileUrl="file://$PROJECT_DIR$/src/GraphControllerComponent/BoardScreen/BoardScreenController.java" line="34">
-        <watch expression="boardCharacters" />
-      </inline-watch>
     </watches-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">

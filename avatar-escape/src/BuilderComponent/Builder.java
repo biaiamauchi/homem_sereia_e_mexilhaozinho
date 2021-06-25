@@ -55,18 +55,27 @@ public class Builder implements iBuilderProperties{
             for (int i = 0; i < boardHeight*boardWidth; i++) {
                     if (commands[i][1].equals("A")) {
                         iCharacterProperties aang = new Aang("/assets/characters/heroes/Aang.png", i/6, i%6, 100, 50);
+                        aang.setLife(100);
+                        aang.setScore(25);
                         board.setCellBoard(aang, i/6, i%6);
                     } else if (commands[i][1].equals("K")) {
                         iCharacterProperties kataraSokka = new Heroes("/assets/characters/heroes/SokkaKatara.png", i/6, i%6, 100, 50);
+                        kataraSokka.setLife(20);
                         board.setCellBoard(kataraSokka, i/6, i%6);
                     } else if (commands[i][1].equals("T")) {
                         iCharacterProperties toph = new Heroes("/assets/characters/heroes/Toph.png", i/6, i%6, 100, 50);
+                        toph.setLife(10);
+                        toph.setScore(10);
                         board.setCellBoard(toph, i/6, i%6);
                     } else if (commands[i][1].equals("Z")) {
                         iCharacterProperties zuko = new Heroes("/assets/characters/heroes/Zuko.png", i/6, i%6, 100, 50);
+                        zuko.setLife(10);
+                        zuko.setScore(15);
                         board.setCellBoard(zuko, i/6, i%6);
                     } else if (commands[i][1].equals("F")) {
                         iCharacterProperties sentinela = new Villans("/assets/characters/villains/sentinela.png", i/6, i%6, 100, 50);
+                        sentinela.setLife(-5);
+                        sentinela.setScore(0);
                         board.setCellBoard(sentinela, i/6, i%6);
                     } else if (commands[i][1].equals("AP")) {
                         iCharacterProperties appa = new Heroes("/assets/characters/heroes/Appa.png", i/6, i%6, 100, 50);
