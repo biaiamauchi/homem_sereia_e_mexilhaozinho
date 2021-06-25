@@ -71,7 +71,7 @@ public class prototipoFight extends Application {
         avatarScoreLabel.setTranslateY(180);
         avatarScoreLabel.setFont(new Font("Inter", 18));
 
-        ImageView avatar = new ImageView(new Image(String.valueOf(getClass().getResource("/assets/characters/heroes/Aang.png"))));
+        ImageView avatar = new ImageView(new Image(String.valueOf(getClass().getResource("/assets/characters/heroes/AangFight.png"))));
         avatar.setFitWidth(200);
         avatar.setFitHeight(200);
         avatar.setX(350);
