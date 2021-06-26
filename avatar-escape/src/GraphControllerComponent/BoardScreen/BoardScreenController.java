@@ -204,6 +204,39 @@ public class BoardScreenController extends GameController {
                             avatarLifeLabel.setText("Vida - " + (int)(avatarLife.getProgress()*100) + "%");
                             game.getAvatar().setLife((int)(avatarLife.getProgress()*100));
                         }
+                        else if(game.getBoard().getBoard().getLevel() == 2 && newLine != game.getBoard().getBoardHeight() - 1 && newCollumn != game.getBoard().getBoardWidth()
+                                && newLine != 0 && newCollumn != 0 && game.getBoard().getBoard().getBoard()[newLine][newCollumn].getCharacter().getScore() != 0){
+                            message.setText("+10% de Vida e +10% de Estado Avatar\n" +
+                                    "Você encontrou a Toph!");
+                            avatarLife.setProgress(avatarLife.getProgress()+0.10F);
+                            avatarLifeLabel.setText("Vida - " + (int)(avatarLife.getProgress()*100) + "%");
+                            game.getAvatar().setLife((int)(avatarLife.getProgress()*100));
+
+                            avatarScore.setProgress(avatarScore.getProgress()+0.10F);
+                            avatarScoreLabel.setText("Estado Avatar - " + (int)(avatarScore.getProgress()*100) + "%");
+                            game.getAvatar().setScore((int)(avatarScore.getProgress()*100));
+                        }
+                        else if(game.getBoard().getBoard().getBoard()[newLine][newCollumn].getCharacter().getScore() == 0 &&
+                                game.getBoard().getBoard().getBoard()[newLine][newCollumn].getCharacter().getLife() == 0){
+                            game.getBoard().getBoard().setLevel(game.getBoard().getBoard().getLevel() + 1);
+                            screen.getStage().setScene(new BoardScreenController(game).boardScreen());
+
+                            avatarScore.setProgress(avatarScore.getProgress()+0.10F);
+                            avatarScoreLabel.setText("Estado Avatar - " + (int)(avatarScore.getProgress()*100) + "%");
+                            game.getAvatar().setScore((int)(avatarScore.getProgress()*100));
+                        }
+                        else if(game.getBoard().getBoard().getLevel() == 3 && newLine != game.getBoard().getBoardHeight() - 1 && newCollumn != game.getBoard().getBoardWidth()
+                                && newLine != 0 && newCollumn != 0){
+                            message.setText("+10% de Vida e +15% de Estado Avatar\n" +
+                                    "Você encontrou o Zuko!");
+                            avatarLife.setProgress(avatarLife.getProgress()+0.10F);
+                            avatarLifeLabel.setText("Vida - " + (int)(avatarLife.getProgress()*100) + "%");
+                            game.getAvatar().setLife((int)(avatarLife.getProgress()*100));
+
+                            avatarScore.setProgress(avatarScore.getProgress()+0.15F);
+                            avatarScoreLabel.setText("Estado Avatar - " + (int)(avatarScore.getProgress()*100) + "%");
+                            game.getAvatar().setScore((int)(avatarScore.getProgress()*100));
+                        }
                         else if(newLine == game.getBoard().getBoardHeight() - 1 && newCollumn == game.getBoard().getBoardWidth() - 1){
                             screen.getStage().setScene(new FightScreenController(game).fightScreen());
                         }

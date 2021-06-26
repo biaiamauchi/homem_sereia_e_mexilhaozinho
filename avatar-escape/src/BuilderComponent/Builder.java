@@ -78,7 +78,7 @@ public class Builder implements iBuilderProperties{
                         sentinela.setScore(0);
                         board.setCellBoard(sentinela, i/6, i%6);
                     } else if (commands[i][1].equals("AP")) {
-                        iCharacterProperties appa = new Heroes("/assets/characters/heroes/Appa.png", i/6, i%6, 100, 50);
+                        iCharacterProperties appa = new Heroes("/assets/characters/heroes/Appa.png", i/6, i%6, 0, 0);
                         board.setCellBoard(appa, i/6, i%6);
                     } else if (commands[i][1].equals("-")) {
                         board.setCellBoard(null, i/6, i%6);

@@ -197,8 +197,17 @@ public class FightScreenController {
                 }
 
                 if(villainLife.getProgress() <= 0){
-                    game.getBoard().getBoard().setLevel(game.getBoard().getBoard().getLevel()+1);
-                    screen.getStage().setScene(new BoardScreenController(game).boardScreen());
+                    game.getBoard().getBoard().setLevel(game.getBoard().getBoard().getLevel() + 1);
+                    if(game.getBoard().getBoard().getLevel() == 4) {
+                        screen.getStage().setScene(new FightScreenController(game).fightScreen());
+                    }
+                    else if(game.getBoard().getBoard().getLevel() <= 3){
+                        screen.getStage().setScene(new BoardScreenController(game).boardScreen());
+                    }
+                    else{
+                        //criar função pra resetar os valores para jogar novamente
+                        screen.getStage().setScene(new FightScreenController(game).fightScreen());
+                    }
                 }
             }
         }));
