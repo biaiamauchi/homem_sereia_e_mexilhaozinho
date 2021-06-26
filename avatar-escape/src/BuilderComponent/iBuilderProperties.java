@@ -1,7 +1,6 @@
 package BuilderComponent;
 
-import LevelComponent.iBoardProperties;
-import LevelComponent.iFightProperties;
+import BoardComponent.iBoardProperties;
 
 public interface iBuilderProperties {
     public void build(String CSVSource);

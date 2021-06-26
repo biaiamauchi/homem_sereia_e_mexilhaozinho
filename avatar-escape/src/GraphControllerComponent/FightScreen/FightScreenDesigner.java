@@ -1,56 +1,44 @@
-package GraphControllerComponent.teste;
-import javafx.application.Application;
+package GraphControllerComponent.FightScreen;
+
+import GraphControllerComponent.iGraphControllerProperties;
 import javafx.scene.Group;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Font;
-import javafx.stage.Stage;
 
-public class prototipoFight extends Application {
-    private ProgressBar avatarLife;
-    private ProgressBar avatarScore;
-    private Label avatarLifeLabel;
-    private Label avatarScoreLabel;
+public class FightScreenDesigner {
+    private iGraphControllerProperties screen;
 
-    private ProgressBar villainLife;
-    private ProgressBar villainScore;
-    private Label villainLifeLabel;
-    private Label villainScoreLabel;
+    public Group groupScene(iGraphControllerProperties screen,
+                            ProgressBar avatarLife, ProgressBar avatarScore, Label avatarLifeLabel, Label avatarScoreLabel,
+                            ProgressBar villainLife, ProgressBar villainScore, Label villainLifeLabel, Label villainScoreLabel,
+                            Label avatarLabelMovement, Label villainLabelMovement){
 
-    private static Stage stage;
-
-    public static void Main(String[] args){
-        launch(args);
+        this.screen = screen;
+        return new Group(   background(),
+                            createAvatar(avatarLife, avatarScore, avatarLifeLabel, avatarScoreLabel),
+                            createVillan(villainLife, villainScore, villainLifeLabel, villainScoreLabel),
+                            instructions(avatarLabelMovement, villainLabelMovement));
     }
 
-    public void start(Stage stage) throws Exception {
-        stage.setTitle("Fase 1");
-        Scene tela = fightScreen();
-        stage.setScene(tela);
-        stage.show();
-        setStage(stage);
+    private ImageView background(){
+        Image image = new Image(String.valueOf(getClass().getResource("/assets/background/boardBackground.png")));
+        ImageView background = new ImageView(image);
+
+        return background;
     }
 
-    public static Stage getStage(){
-        return stage;
-    }
-
-    public static void setStage(Stage stageJ){
-        stage = stageJ;
-    }
-
-    public Group createAvatar(){
-        avatarLife = new ProgressBar(0.6F);
+    private Group createAvatar(ProgressBar avatarLife, ProgressBar avatarScore, Label avatarLifeLabel, Label avatarScoreLabel){
+        avatarLife.setProgress((double)screen.getGame().getAvatar().getLife()/100);
         avatarLife.setStyle("-fx-accent: #49AF59");
         avatarLife.setMaxWidth(300);
         avatarLife.setTranslateX(25);
         avatarLife.setTranslateY(110);
         avatarLife.setPrefWidth(300);
 
-        avatarScore = new ProgressBar(0.25F);
+        avatarScore.setProgress((double)screen.getGame().getAvatar().getScore()/100);
         avatarScore.setStyle("-fx-accent: #517AC9");
         avatarScore.setMaxWidth(300);
         avatarScore.setTranslateX(25);
@@ -58,13 +46,13 @@ public class prototipoFight extends Application {
         avatarScore.setPrefWidth(300);
 
         String text = "Vida - " + (int)(avatarLife.getProgress()*100) + "%";
-        avatarLifeLabel = new Label(text);
+        avatarLifeLabel.setText(text);
         avatarLifeLabel.setTranslateX(140);
         avatarLifeLabel.setTranslateY(70);
         avatarLifeLabel.setFont(new Font("Inter", 18));
 
         text = "Estado Avatar - " + (int)(avatarScore.getProgress()*100) + "%";
-        avatarScoreLabel = new Label(text);
+        avatarScoreLabel.setText(text);
         avatarScoreLabel.setTranslateX(100);
         avatarScoreLabel.setTranslateY(180);
         avatarScoreLabel.setFont(new Font("Inter", 18));
@@ -74,22 +62,19 @@ public class prototipoFight extends Application {
         avatar.setFitHeight(200);
         avatar.setX(350);
         avatar.setY(70);
-        //avatar.minWidth(450);
-        //avatar.minHeight(100);
 
-        Group root = new Group(avatarLife, avatarLifeLabel, avatarScore, avatarScoreLabel, avatar);
-        return root;
+        return new Group(avatarLife, avatarLifeLabel, avatarScore, avatarScoreLabel, avatar);
     }
 
-    public Group createVillan(){
-        villainLife = new ProgressBar(1.0F);
+    private Group createVillan(ProgressBar villainLife, ProgressBar villainScore, Label villainLifeLabel, Label villainScoreLabel){
+        villainLife.setProgress(1.0F);
         villainLife.setStyle("-fx-accent: #49AF59");
         villainLife.setMaxWidth(300);
         villainLife.setTranslateX(875);
         villainLife.setTranslateY(110);
         villainLife.setPrefWidth(300);
 
-        villainScore = new ProgressBar(0.5F);
+        villainScore.setProgress(0.25 * screen.getGame().getBoard().getBoard().getLevel());
         villainScore.setStyle("-fx-accent: #517AC9");
         villainScore.setMaxWidth(300);
         villainScore.setTranslateX(875);
@@ -97,30 +82,39 @@ public class prototipoFight extends Application {
         villainScore.setPrefWidth(300);
 
         String text = "Vida - " + (int)(villainLife.getProgress()*100) + "%";
-        villainLifeLabel = new Label(text);
+        villainLifeLabel.setText(text);
         villainLifeLabel.setTranslateX(980);
         villainLifeLabel.setTranslateY(70);
         villainLifeLabel.setFont(new Font("Inter", 18));
 
         text = "Força - " + (int)(villainScore.getProgress()*100) + "%";
-        villainScoreLabel = new Label(text);
+        villainScoreLabel.setText(text);
         villainScoreLabel.setTranslateX(975);
         villainScoreLabel.setTranslateY(180);
         villainScoreLabel.setFont(new Font("Inter", 18));
 
-        ImageView villain = new ImageView(new Image(String.valueOf(getClass().getResource("/assets/characters/villains/villain4.png"))));
+        String villainSource = "/assets/characters/villains/villain" + screen.getGame().getBoard().getBoard().getLevel() + ".png";
+        ImageView villain = new ImageView(new Image(String.valueOf(getClass().getResource(villainSource))));
         villain.setFitWidth(200);
         villain.setFitHeight(200);
         villain.setX(650);
         villain.setY(70);
-        //avatar.minWidth(450);
-        //avatar.minHeight(100);
 
-        Group root = new Group(villainLife, villainLifeLabel, villainScore, villainScoreLabel, villain);
-        return root;
+        return new Group(villainLife, villainLifeLabel, villainScore, villainScoreLabel, villain);
     }
 
-    public Group instructions(){
+    private Group instructions(Label avatarLabelMovement, Label villainLabelMovement){
+        avatarLabelMovement.setText("");
+        avatarLabelMovement.setTranslateX(100);
+        avatarLabelMovement.setTranslateY(300);
+        avatarLabelMovement.setFont(new Font("Inter", 18));
+        avatarLabelMovement.setStyle("-fx-font-weight: bold");
+
+        villainLabelMovement.setText("");
+        villainLabelMovement.setTranslateX(790);
+        villainLabelMovement.setTranslateY(300);
+        villainLabelMovement.setFont(new Font("Inter", 18));
+        villainLabelMovement.setStyle("-fx-font-weight: bold");
 
         ImageView water = new ImageView(new Image(String.valueOf(getClass().getResource("/assets/instructions/instruction1.png"))));
         water.setFitWidth(250);
@@ -152,24 +146,6 @@ public class prototipoFight extends Application {
         x.setX(592);
         x.setY(152);
 
-        Group root = new Group(water, earth, fire, air, x);
-        return root;
-    }
-
-    public Scene fightScreen(){
-        Image image = new Image(String.valueOf(getClass().getResource("/assets/background/boardBackground.png")));
-        ImageView background = new ImageView(image);
-
-        Group root = new Group(background);
-
-        root.minWidth(1200);
-        root.minHeight(600);
-
-        root.getChildren().addAll(createAvatar());
-        root.getChildren().addAll(createVillan());
-        root.getChildren().addAll(instructions());
-
-        Scene cena = new Scene(root, 1200, 600);
-        return cena;
+        return new Group(water, earth, fire, air, x, avatarLabelMovement, villainLabelMovement);
     }
 }

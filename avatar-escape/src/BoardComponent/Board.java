@@ -1,4 +1,4 @@
-package LevelComponent;
+package BoardComponent;
 import CellComponent.*;
 import CharacterComponent.iCharacterProperties;
 

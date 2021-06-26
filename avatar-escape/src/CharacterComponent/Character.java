@@ -3,16 +3,18 @@ package CharacterComponent;
 import javafx.scene.image.ImageView;
 
 public abstract class Character implements iCharacterProperties{
+    private String imageSource;
     private String character;
     private int line;
     private int collumn;
     private int score;
     private int life;
 
-    public Character(String character, int line, int collumn, int score, int life){
+    public Character(String character, String imageSource, int line, int collumn, int score, int life){
         this.line = line;
         this.collumn = collumn;
         this.character = character;
+        this.imageSource = imageSource;
         this.score = score;
         this.life = life;
     }
@@ -20,6 +22,8 @@ public abstract class Character implements iCharacterProperties{
     public String getCharacter(){
         return character;
     }
+
+    public String getImageSource() {return imageSource;}
 
     public int getLine(){
         return line;

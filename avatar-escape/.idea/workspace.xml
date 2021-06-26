@@ -346,6 +346,9 @@
         <watch expression="game.getBoard().getBoard().getBoard()[newLine][newCollumn].getCharacter().getLife()" />
         <watch expression="(double)game.getBoard().getBoard().getBoard()[newLine][newCollumn].getCharacter().getLife()/100" />
         <watch expression="avatarLife.getProgress()" />
+        <watch expression="villainLife.getProgress()-damage" />
+        <watch expression="avatarLife.getProgress()+lifeIncrement/100" />
+        <watch expression="lifeIncrement/100" />
       </configuration>
     </watches-manager>
   </component>

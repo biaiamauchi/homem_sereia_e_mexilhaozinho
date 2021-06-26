@@ -5,6 +5,8 @@ import javafx.scene.image.ImageView;
 public interface iCharacterProperties {
     public String getCharacter();
 
+    public String getImageSource();
+
     public int getLine();
 
     public int getCollumn();

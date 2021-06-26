@@ -120,7 +120,7 @@ Interfaces associadas a esse componente:
 
 item | Detalhamento
 ----- | -----
-Classe | `src.LevelComponent`
+Classe | `src.BoardComponent`
 Autores | `Beatriz Iamauchi Barroso` <br> `Pedro Igor Salvador Alves`
 Interfaces | `iBoardProperties` <br> `iFightProperties`
 

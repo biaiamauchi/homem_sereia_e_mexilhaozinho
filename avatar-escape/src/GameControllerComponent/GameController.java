@@ -4,18 +4,15 @@ import BuilderComponent.Builder;
 import BuilderComponent.iBuilderProperties;
 import CharacterComponent.Heroes;
 import CharacterComponent.iCharacterProperties;
-import GraphControllerComponent.iGraphControllerProperties;
 
 public class GameController implements iGameControllerProperties{
     private boolean isGameFinalized;
     private iBuilderProperties game;
     private String message = "";
-    private int level;
-    private iCharacterProperties avatar = new Heroes("", 0, 0, 25, 100);
+    private iCharacterProperties avatar = new Heroes("Aang","", 0, 0, 25, 100);
 
     public GameController(){
-        this.game = new Builder(1, true);
-        this.level = 1;
+        this.game = new Builder(1);
     }
 
     public boolean getIsGameFinalized(){
