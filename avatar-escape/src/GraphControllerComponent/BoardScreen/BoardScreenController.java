@@ -5,6 +5,7 @@ import GameControllerComponent.GameController;
 import GameControllerComponent.iGameControllerProperties;
 import GraphControllerComponent.FightScreen.FightScreenController;
 import GraphControllerComponent.GraphController;
+import GraphControllerComponent.SuportScreen.SuportScreenController;
 import GraphControllerComponent.iGraphControllerProperties;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
@@ -19,7 +20,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
-import javafx.stage.Stage;
+
+import java.util.Random;
 
 public class BoardScreenController extends GameController {
     private ImageView boardCharacters[][] = new ImageView[6][6];
@@ -29,8 +31,14 @@ public class BoardScreenController extends GameController {
     private Label avatarLifeLabel;
     private Label avatarScoreLabel;
     private Label message;
-    private iGameControllerProperties game = new GameController();
+
+    iGameControllerProperties game;
     iGraphControllerProperties screen = new GraphController();
+
+    public BoardScreenController(iGameControllerProperties game){
+        this.game = game;
+        this.screen.setGame(game);
+    }
 
     public void criarAvatar(){
         Image avatarImagem = new Image(String.valueOf(getClass().getResource("/assets/characters/heroes/Aang.png")));
@@ -41,7 +49,7 @@ public class BoardScreenController extends GameController {
     }
 
     public void criarAvatarLife(){
-        this.avatarLife = new ProgressBar(1.0F);
+        this.avatarLife = new ProgressBar((double)screen.getGame().getAvatar().getLife()/100);
         this.avatarLife.setStyle("-fx-accent: red");
         this.avatarLife.setMaxWidth(100);
         this.avatarLife.setTranslateX(100);
@@ -53,7 +61,7 @@ public class BoardScreenController extends GameController {
     }
 
     public void criarAvatarScore(){
-        this.avatarScore = new ProgressBar(0.6F);
+        this.avatarScore = new ProgressBar((double)screen.getGame().getAvatar().getScore()/100);
         this.avatarScore.setStyle("-fx-accent: blue");
         this.avatarScore.setMaxWidth(100);
         this.avatarScore.setTranslateX(100);
@@ -108,7 +116,6 @@ public class BoardScreenController extends GameController {
     }
 
     public ImageView[][] fillBoard(Group group) {
-        this.game.play("src/assets/maps/level1/mapa.csv");
         ImageView[][] characters = new ImageView[6][6];
 
         boolean keep = false;
@@ -137,6 +144,8 @@ public class BoardScreenController extends GameController {
 
     public Scene boardScreen(){
         criarAvatar();
+        String map = "src/assets/maps/level" + game.getBoard().getBoard().getLevel() + "/fase" + game.getBoard().getBoard().getLevel() + "." + String.valueOf(new Random().nextInt(15) + 1) + ".csv";
+        this.game.play(map);
 
         String screenName = "Fase - " + game.getBoard().getBoard().getLevel();
         Group root = new Group(board(), this.avatar, avatarInfo());
@@ -180,6 +189,11 @@ public class BoardScreenController extends GameController {
                                 "Você não pode ficar aí, tem um sentinela do fogo!");
                         avatarLife.setProgress(avatarLife.getProgress()-0.05F);
                         avatarLifeLabel.setText("Vida - " + (int)(avatarLife.getProgress()*100) + "%");
+                        game.getAvatar().setLife((int)(avatarLife.getProgress()*100));
+
+                        if((int)(avatarLife.getProgress()*100) == 0){
+                            screen.getStage().setScene(new SuportScreenController(game).messageScreen("/assets/messages/lose.png"));
+                        }
                     }
                     else{
                         if(game.getBoard().getBoard().getLevel() == 1 && newLine != game.getBoard().getBoardHeight() - 1 && newCollumn != game.getBoard().getBoardWidth()
@@ -188,9 +202,10 @@ public class BoardScreenController extends GameController {
                                     "Você encontrou a Katara e o Sokka!");
                             avatarLife.setProgress(avatarLife.getProgress()+0.25F);
                             avatarLifeLabel.setText("Vida - " + (int)(avatarLife.getProgress()*100) + "%");
+                            game.getAvatar().setLife((int)(avatarLife.getProgress()*100));
                         }
                         else if(newLine == game.getBoard().getBoardHeight() - 1 && newCollumn == game.getBoard().getBoardWidth() - 1){
-                            screen.getStage().setScene(new FightScreenController().fightScreen());
+                            screen.getStage().setScene(new FightScreenController(game).fightScreen());
                         }
                     }
                 }

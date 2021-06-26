@@ -1,6 +1,4 @@
 package GraphControllerComponent.teste;
-import GraphControllerComponent.FightScreen.FightScreenController;
-import GraphControllerComponent.SuportScreen.SuportScreenController;
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -110,7 +108,7 @@ public class prototipoFight extends Application {
         villainScoreLabel.setTranslateY(180);
         villainScoreLabel.setFont(new Font("Inter", 18));
 
-        ImageView villain = new ImageView(new Image(String.valueOf(getClass().getResource("/assets/characters/villains/LordOzai.png"))));
+        ImageView villain = new ImageView(new Image(String.valueOf(getClass().getResource("/assets/characters/villains/villain4.png"))));
         villain.setFitWidth(200);
         villain.setFitHeight(200);
         villain.setX(650);
@@ -130,19 +128,19 @@ public class prototipoFight extends Application {
         water.setX(15);
         water.setY(350);
 
-        ImageView earth = new ImageView(new Image(String.valueOf(getClass().getResource("/assets/instructions/instruction4.png"))));
+        ImageView earth = new ImageView(new Image(String.valueOf(getClass().getResource("/assets/instructions/instruction2.png"))));
         earth.setFitWidth(250);
         earth.setFitHeight(205);
         earth.setX(310);
         earth.setY(350);
 
-        ImageView fire = new ImageView(new Image(String.valueOf(getClass().getResource("/assets/instructions/instruction2.png"))));
+        ImageView fire = new ImageView(new Image(String.valueOf(getClass().getResource("/assets/instructions/instruction3.png"))));
         fire.setFitWidth(250);
         fire.setFitHeight(205);
         fire.setX(625);
         fire.setY(350);
 
-        ImageView air = new ImageView(new Image(String.valueOf(getClass().getResource("/assets/instructions/instruction3.png"))));
+        ImageView air = new ImageView(new Image(String.valueOf(getClass().getResource("/assets/instructions/instruction4.png"))));
         air.setFitWidth(250);
         air.setFitHeight(205);
         air.setX(915);

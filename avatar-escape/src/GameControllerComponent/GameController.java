@@ -2,6 +2,8 @@ package GameControllerComponent;
 
 import BuilderComponent.Builder;
 import BuilderComponent.iBuilderProperties;
+import CharacterComponent.Heroes;
+import CharacterComponent.iCharacterProperties;
 import GraphControllerComponent.iGraphControllerProperties;
 
 public class GameController implements iGameControllerProperties{
@@ -9,6 +11,7 @@ public class GameController implements iGameControllerProperties{
     private iBuilderProperties game;
     private String message = "";
     private int level;
+    private iCharacterProperties avatar = new Heroes("", 0, 0, 25, 100);
 
     public GameController(){
         this.game = new Builder(1, true);
@@ -29,5 +32,17 @@ public class GameController implements iGameControllerProperties{
 
     public iBuilderProperties getBoard(){
         return this.game;
+    }
+
+    public void setGame(iGameControllerProperties game){
+        this.game = game.getBoard();
+    }
+
+    public void setAvatar(iCharacterProperties avatar){
+        this.avatar = avatar;
+    }
+
+    public iCharacterProperties getAvatar(){
+        return this.avatar;
     }
 }

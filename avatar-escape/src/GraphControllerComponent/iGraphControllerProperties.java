@@ -8,11 +8,11 @@ import javafx.stage.Stage;
 
 public interface iGraphControllerProperties {
     public Stage getStage();
+
     public void setStage(Stage fixStage);
 
     public iGameControllerProperties getGame();
+    public void setGame(iGameControllerProperties game);
 
-    public void updateAvatar(int life);
-    public void setAvatar(iCharacterProperties avatar);
     public Group screenStyle(String imagemString, String screenNameText, Color color);
 }

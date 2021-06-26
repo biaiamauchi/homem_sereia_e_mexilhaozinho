@@ -1,27 +1,28 @@
 package GraphControllerComponent.SuportScreen;
 
+import GameControllerComponent.iGameControllerProperties;
 import GraphControllerComponent.BoardScreen.BoardScreenController;
 import GraphControllerComponent.GraphController;
 import GraphControllerComponent.iGraphControllerProperties;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
-import javafx.scene.text.Font;
 
 public class SuportScreenController {
+    iGameControllerProperties game;
     iGraphControllerProperties screen = new GraphController();
 
-    public Scene instructionsScreen(){
-        Image instructionsImage = new Image(String.valueOf(getClass().getResource("/assets/instructions/gameInstructions.png")));
+    public SuportScreenController(iGameControllerProperties game){
+        this.game = game;
+        this.screen.setGame(game);
+    }
+
+    public Scene messageScreen(String messageSource){
+        Image instructionsImage = new Image(String.valueOf(getClass().getResource(messageSource)));
         ImageView imageInstructions = new ImageView(instructionsImage);
         Group image = new Group(imageInstructions);
         imageInstructions.setFitWidth(350);
@@ -38,7 +39,7 @@ public class SuportScreenController {
         play.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(javafx.scene.input.MouseEvent e) {
-                screen.getStage().setScene(new BoardScreenController().boardScreen());
+                screen.getStage().setScene(new BoardScreenController(game).boardScreen());
             }
         });
 

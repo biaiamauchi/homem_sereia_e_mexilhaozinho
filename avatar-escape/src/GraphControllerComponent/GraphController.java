@@ -16,21 +16,18 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
-import CharacterComponent.iCharacterProperties;
-import javafx.stage.StageStyle;
 
 public class GraphController extends Application implements iGraphControllerProperties{
     private iGameControllerProperties game = new GameController();
     private static Stage stage;
-    private iCharacterProperties avatar;
 
     public static void Main(String[] args){
         launch(args);
     }
 
     public void start(Stage stage) throws Exception {
-        stage.initStyle(StageStyle.UNDECORATED);
-        Scene tela = new SuportScreenController().instructionsScreen();
+        //stage.initStyle(StageStyle.UNDECORATED);
+        Scene tela = new SuportScreenController(game).messageScreen("/assets/instructions/gameInstructions.png");
         stage.setScene(tela);
         stage.show();
         setStage(stage);
@@ -48,12 +45,8 @@ public class GraphController extends Application implements iGraphControllerProp
         return this.game;
     }
 
-    public void updateAvatar(int life){
-        this.avatar.setLife(this.avatar.getLife()+life);
-    }
-
-    public void setAvatar(iCharacterProperties avatar){
-        this.avatar = avatar;
+    public void setGame(iGameControllerProperties game){
+        this.game = game;
     }
 
     public Group screenStyle(String imagemString, String screenNameText, Color color){
