@@ -1,7 +1,8 @@
 package GraphControllerComponent.BoardScreen;
 
 import CharacterComponent.Villains;
-import GraphControllerComponent.iGraphControllerProperties;
+import GraphControllerComponent.FadeAnimation;
+import GraphControllerComponent.Main.iGraphControllerProperties;
 import javafx.scene.Group;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
@@ -108,15 +109,15 @@ public class BoardScreenDesigner {
         for(int i = 0; i < screen.getGame().getBoard().getBoardHeight(); i++){
             for(int j = 0; j < screen.getGame().getBoard().getBoardWidth(); j++){
                 if(keep){
-                    if(screen.getGame().getBoard().getBoard().getBoard()[i][j].getCharacter() != null){
-                        boardCharacters[i][j] = new ImageView(new Image(screen.getGame().getBoard().getBoard().getBoard()[i][j].getCharacter().getImageSource()));
+                    if(screen.getGame().getBoard().getBoard().getCells()[i][j].getCharacter() != null){
+                        boardCharacters[i][j] = new ImageView(new Image(screen.getGame().getBoard().getBoard().getCells()[i][j].getCharacter().getImageSource()));
 
-                        if(screen.getGame().getBoard().getBoard().getBoard()[i][j].getCharacter() instanceof Villains){
+                        if(screen.getGame().getBoard().getBoard().getCells()[i][j].getCharacter() instanceof Villains){
                             boardCharacters[i][j].setX(30+150*(j));
                             boardCharacters[i][j].setY(5+100*(i));
 
-                            Timer timer = new Timer(boardCharacters[i][j]);
-                            timer.start();
+                            FadeAnimation animationFade = new FadeAnimation(boardCharacters[i][j], 0.05);
+                            animationFade.start();
                         }
                         else{
                             boardCharacters[i][j].setX(35+150*(j));
@@ -129,5 +130,4 @@ public class BoardScreenDesigner {
             }
         }
     }
-
 }

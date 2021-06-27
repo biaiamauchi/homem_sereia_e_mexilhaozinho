@@ -33,7 +33,7 @@ public class Board implements iBoardProperties {
         return cells[line][collumn];
     }
 
-    public iCellProperties[][] getBoard() {
+    public iCellProperties[][] getCells() {
         return cells;
     }
 

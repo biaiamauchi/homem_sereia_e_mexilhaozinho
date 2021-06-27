@@ -2,10 +2,10 @@ package GraphControllerComponent.FightScreen;
 
 import GameControllerComponent.iGameControllerProperties;
 import GraphControllerComponent.BoardScreen.BoardScreenController;
-import GraphControllerComponent.BoardScreen.Timer;
-import GraphControllerComponent.GraphController;
+import GraphControllerComponent.FadeAnimation;
+import GraphControllerComponent.Main.GraphController;
 import GraphControllerComponent.PlayAgainScreen.PlayAgainScreenController;
-import GraphControllerComponent.iGraphControllerProperties;
+import GraphControllerComponent.Main.iGraphControllerProperties;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -56,53 +56,66 @@ public class FightScreenController {
             String text = "";
             avatarLabelMovement.setText(text);
             villainLabelMovement.setText(text);
+            boolean validMovement = false;
 
             if (event.getCode() == KeyCode.NUMPAD1 || event.getCode() == KeyCode.DIGIT1) {
-                avatarLife.setProgress(avatarLife.getProgress()+0.10F);
-                avatarLifeLabel.setText("Vida - " + (int)(avatarLife.getProgress()*100) + "%");
-                screen.getGame().getAvatar().setLife((int)(avatarLife.getProgress()*100));
+                verifyLimit(avatarLife, 0.10);
+                avatarLifeLabel.setText("Vida - " + (int) (avatarLife.getProgress() * 100) + "%");
+                screen.getGame().getAvatar().setLife((int) (avatarLife.getProgress() * 100));
 
                 text = "Você se curou: +10% de vida";
+
+                validMovement = true;
             } else if (event.getCode() == KeyCode.NUMPAD2 || event.getCode() == KeyCode.DIGIT2) {
-                avatarScore.setProgress(avatarScore.getProgress()+0.10F);
-                avatarScoreLabel.setText("Estado Avatar - " + (int)(avatarScore.getProgress()*100) + "%");
-                screen.getGame().getAvatar().setScore((int)(avatarScore.getProgress()*100));
+                verifyLimit(avatarScore, 0.10);
+                avatarScoreLabel.setText("Estado Avatar - " + (int) (avatarScore.getProgress() * 100) + "%");
+                screen.getGame().getAvatar().setScore((int) (avatarScore.getProgress() * 100));
 
                 text = "Você se curou: +10% de Estado Avatar";
+
+                validMovement = true;
             } else if (event.getCode() == KeyCode.NUMPAD3 || event.getCode() == KeyCode.DIGIT3) {
-                double damage = (screen.getGame().getAvatar().getScore() * 0.1)/100;
-                villainLife.setProgress(villainLife.getProgress()-damage);
-                villainLifeLabel.setText("Vida - " + (int)(villainLife.getProgress()*100) + "%");
+                double damage = (screen.getGame().getAvatar().getScore() * 0.1) / 100;
+                verifyLimit(villainLife, -damage);
+                villainLifeLabel.setText("Vida - " + (int) (villainLife.getProgress() * 100) + "%");
 
                 text = "Você atacou com: 10% do Estado Avatar";
+
+                validMovement = true;
             } else if (event.getCode() == KeyCode.NUMPAD4 || event.getCode() == KeyCode.DIGIT4) {
-                villainScore.setProgress(villainScore.getProgress()-0.10F);
-                villainScoreLabel.setText("Força - " + (int)(villainScore.getProgress()*100) + "%");
+                verifyLimit(villainScore, -0.10);
+                villainScoreLabel.setText("Força - " + (int) (villainScore.getProgress() * 100) + "%");
 
                 text = "Você atacou: -10% da Força do Inimigo";
+
+                validMovement = true;
+            } else
+                validMovement = false;
+
+            if (validMovement) {
+                avatarLabelMovement.setText(text);
+                FadeAnimation teste = new FadeAnimation();
+
+                Random villainMovement = new Random();
+                if (villainMovement.nextBoolean()) { //attack
+                    verifyLimit(avatarLife, -villainScore.getProgress() / 10);
+                    avatarLifeLabel.setText("Vida - " + (int) (avatarLife.getProgress() * 100) + "%");
+                    screen.getGame().getAvatar().setLife((int) (avatarLife.getProgress() * 100));
+
+                    text = "Inimigo te atacou: -" + String.valueOf(villainScore.getProgress() * 10) + "% de vida";
+                } else {
+                    verifyLimit(villainLife, 0.05);
+                    villainLifeLabel.setText("Vida - " + (int) (villainLife.getProgress() * 100) + "%");
+
+                    text = "Inimigo se curou: 10% de vida";
+                }
+
+                villainLabelMovement.setText(text);
+
+                verifyGameProgress();
             }
-
-            avatarLabelMovement.setText(text);
-            Timer teste = new Timer();
-
-            Random villainMovement = new Random();
-            if(villainMovement.nextBoolean()) { //attack
-                avatarLife.setProgress(avatarLife.getProgress()-villainScore.getProgress()/10);
-                avatarLifeLabel.setText("Vida - " + (int)(avatarLife.getProgress()*100) + "%");
-                screen.getGame().getAvatar().setLife(screen.getGame().getAvatar().getLife()-(int)villainScore.getProgress()*10);
-
-                text = "Inimigo te atacou: -" + String.valueOf(villainScore.getProgress()*10) + "% de vida";
-            }
-            else{
-                villainLife.setProgress(villainLife.getProgress()+0.05);
-                villainLifeLabel.setText("Vida - " + (int)(villainLife.getProgress()*100) + "%");
-
-                text = "Inimigo se curou: 10% de vida";
-            }
-
-            villainLabelMovement.setText(text);
-
-            verifyGameProgress();
+            else
+                avatarLabelMovement.setText("Tecla inválida");
         }
     };
 
@@ -111,6 +124,7 @@ public class FightScreenController {
             game.getBoard().getBoard().setLevel(game.getBoard().getBoard().getLevel() + 1);
 
             if(game.getBoard().getBoard().getLevel() == 4) {
+                screen.getStage().setTitle("Avatar Escape - Fase " + game.getBoard().getBoard().getLevel());
                 screen.getStage().setScene(new FightScreenController(game).fightScreen());
             }
             else if(game.getBoard().getBoard().getLevel() <= 3){
@@ -123,5 +137,14 @@ public class FightScreenController {
         else if(avatarLife.getProgress() <= 0){
             screen.getStage().setScene(new PlayAgainScreenController().playAgainScreen("/assets/messages/lose.png"));
         }
+    }
+
+    private void verifyLimit(ProgressBar bar, double amount){
+        if(bar.getProgress()+amount >= 1.0)
+            bar.setProgress(1.0);
+        else if(bar.getProgress()+amount <= 0.0)
+            bar.setProgress(0.0);
+        else
+            bar.setProgress(bar.getProgress()+amount);
     }
 }

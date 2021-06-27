@@ -1,6 +1,6 @@
 package GraphControllerComponent.FightScreen;
 
-import GraphControllerComponent.iGraphControllerProperties;
+import GraphControllerComponent.Main.iGraphControllerProperties;
 import javafx.scene.Group;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;

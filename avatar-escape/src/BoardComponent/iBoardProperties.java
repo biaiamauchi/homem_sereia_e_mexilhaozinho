@@ -13,5 +13,5 @@ public interface iBoardProperties {
 
     public iCellProperties getCell(int line, int collumn);
 
-    public iCellProperties[][] getBoard();
+    public iCellProperties[][] getCells();
 }

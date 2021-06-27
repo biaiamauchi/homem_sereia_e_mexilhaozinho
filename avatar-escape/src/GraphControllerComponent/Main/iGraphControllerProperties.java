@@ -1,4 +1,4 @@
-package GraphControllerComponent;
+package GraphControllerComponent.Main;
 
 import CharacterComponent.iCharacterProperties;
 import GameControllerComponent.iGameControllerProperties;
@@ -7,12 +7,11 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public interface iGraphControllerProperties {
+    public iGameControllerProperties getGame();
+
+    public void setGame(iGameControllerProperties game);
+
     public Stage getStage();
 
     public void setStage(Stage fixStage);
-
-    public iGameControllerProperties getGame();
-    public void setGame(iGameControllerProperties game);
-
-    public Group screenStyle(String imagemString, String screenNameText, Color color);
 }

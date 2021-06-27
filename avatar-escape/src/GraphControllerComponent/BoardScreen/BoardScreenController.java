@@ -4,9 +4,9 @@ import CharacterComponent.Villains;
 import GameControllerComponent.GameController;
 import GameControllerComponent.iGameControllerProperties;
 import GraphControllerComponent.FightScreen.FightScreenController;
-import GraphControllerComponent.GraphController;
+import GraphControllerComponent.Main.GraphController;
 import GraphControllerComponent.PlayAgainScreen.PlayAgainScreenController;
-import GraphControllerComponent.iGraphControllerProperties;
+import GraphControllerComponent.Main.iGraphControllerProperties;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -35,6 +35,7 @@ public class BoardScreenController extends GameController {
     }
 
     public Scene boardScreen(){
+        screen.getStage().setTitle("Avatar Escape - Fase " + game.getBoard().getBoard().getLevel());
         String map = "src/assets/maps/level" + game.getBoard().getBoard().getLevel() + "/fase" + game.getBoard().getBoard().getLevel() + "." + String.valueOf(new Random().nextInt(15) + 1) + ".csv";
         this.game.play(map);
 
@@ -92,16 +93,16 @@ public class BoardScreenController extends GameController {
         String text = "";
         double lifeIncrement = 0, scoreIncrement = 0;
 
-        if(game.getBoard().getBoard().getBoard()[newLine][newCollumn].getCharacter() != null){
-            if(game.getBoard().getBoard().getBoard()[newLine][newCollumn].getCharacter() instanceof Villains) {
-                lifeIncrement = game.getBoard().getBoard().getBoard()[newLine][newCollumn].getCharacter().getLife();
+        if(game.getBoard().getBoard().getCells()[newLine][newCollumn].getCharacter() != null){
+            if(game.getBoard().getBoard().getCells()[newLine][newCollumn].getCharacter() instanceof Villains) {
+                lifeIncrement = game.getBoard().getBoard().getCells()[newLine][newCollumn].getCharacter().getLife();
                 text = String.valueOf(lifeIncrement) +
                         "% de Vida\n" +
                         "Você não pode ficar aí, tem um sentinela do fogo!";
 
                 message.setText(text);
-                avatarLife.setProgress(avatarLife.getProgress()+lifeIncrement/100);
-                game.getAvatar().setLife((int)(avatarLife.getProgress()*100)); //usar addLife
+                verifyLimit(avatarLife, lifeIncrement/100);
+                game.getAvatar().setLife((int)(avatarLife.getProgress()*100));
 
                 avatarLifeLabel.setText("Vida - " + (int)(avatarLife.getProgress()*100) + "%");
                 boardCharacters[newLine][newCollumn].opacityProperty().set(1);
@@ -111,21 +112,21 @@ public class BoardScreenController extends GameController {
                 }
             }
             else {
-                if (game.getBoard().getBoard().getBoard()[newLine][newCollumn].getCharacter().getCharacter() != "Door" && game.getBoard().getBoard().getBoard()[newLine][newCollumn].getCharacter().getCharacter() != "Appa") {
-                    if (game.getBoard().getBoard().getBoard()[newLine][newCollumn].getCharacter().getCharacter() == "Katara" && boardCharacters[newLine][newCollumn] != null) {
-                        lifeIncrement = game.getBoard().getBoard().getBoard()[newLine][newCollumn].getCharacter().getLife();
+                if (game.getBoard().getBoard().getCells()[newLine][newCollumn].getCharacter().getCharacter() != "Door" && game.getBoard().getBoard().getCells()[newLine][newCollumn].getCharacter().getCharacter() != "Appa") {
+                    if (game.getBoard().getBoard().getCells()[newLine][newCollumn].getCharacter().getCharacter() == "Katara" && game.getBoard().getBoard().getCells()[newLine][newCollumn].getCellVisited() == false) {
+                        lifeIncrement = game.getBoard().getBoard().getCells()[newLine][newCollumn].getCharacter().getLife();
                         text = "+" + String.valueOf(lifeIncrement) +
                                 "% de Vida\n" +
                                 "Você encontrou a Katara e o Sokka!";
-                    } else if (game.getBoard().getBoard().getBoard()[newLine][newCollumn].getCharacter().getCharacter() == "Toph" && boardCharacters[newLine][newCollumn] != null) {
-                        lifeIncrement = game.getBoard().getBoard().getBoard()[newLine][newCollumn].getCharacter().getLife();
-                        scoreIncrement = game.getBoard().getBoard().getBoard()[newLine][newCollumn].getCharacter().getScore();
+                    } else if (game.getBoard().getBoard().getCells()[newLine][newCollumn].getCharacter().getCharacter() == "Toph" && game.getBoard().getBoard().getCells()[newLine][newCollumn].getCellVisited() == false) {
+                        lifeIncrement = game.getBoard().getBoard().getCells()[newLine][newCollumn].getCharacter().getLife();
+                        scoreIncrement = game.getBoard().getBoard().getCells()[newLine][newCollumn].getCharacter().getScore();
                         text = "+" + String.valueOf(lifeIncrement) +
                                 "% de Vida e +" + String.valueOf(scoreIncrement) + "% de Estado Avatar\n" +
                                 "Você encontrou a Toph!";
-                    } else if (game.getBoard().getBoard().getBoard()[newLine][newCollumn].getCharacter().getCharacter() == "Zuko" && boardCharacters[newLine][newCollumn] != null) {
-                        lifeIncrement = game.getBoard().getBoard().getBoard()[newLine][newCollumn].getCharacter().getLife();
-                        scoreIncrement = game.getBoard().getBoard().getBoard()[newLine][newCollumn].getCharacter().getScore();
+                    } else if (game.getBoard().getBoard().getCells()[newLine][newCollumn].getCharacter().getCharacter() == "Zuko" && game.getBoard().getBoard().getCells()[newLine][newCollumn].getCellVisited() == false) {
+                        lifeIncrement = game.getBoard().getBoard().getCells()[newLine][newCollumn].getCharacter().getLife();
+                        scoreIncrement = game.getBoard().getBoard().getCells()[newLine][newCollumn].getCharacter().getScore();
                         text = "+" + String.valueOf(lifeIncrement) +
                                 "% de Vida e +" + String.valueOf(scoreIncrement) + "% de Estado Avatar\n" +
                                 "Você encontrou o Zuko!";
@@ -133,22 +134,24 @@ public class BoardScreenController extends GameController {
 
                     message.setText(text);
 
-                    avatarLife.setProgress(avatarLife.getProgress() + lifeIncrement/100);
-                    avatarScore.setProgress(avatarScore.getProgress() + scoreIncrement/100);
+                    verifyLimit(avatarLife, lifeIncrement/100);
+                    verifyLimit(avatarScore, scoreIncrement/100);
 
                     avatarLifeLabel.setText("Vida - " + (int) (avatarLife.getProgress() * 100) + "%");
                     avatarScoreLabel.setText("Estado Avatar - " + (int) (avatarScore.getProgress() * 100) + "%");
 
-                    game.getAvatar().addLife((int)lifeIncrement);
-                    game.getAvatar().addScore((int)scoreIncrement);
+                    game.getAvatar().addLife((int) (avatarLife.getProgress() * 100));
+                    game.getAvatar().addScore((int) (avatarScore.getProgress() * 100));
 
                     if(boardCharacters[newLine][newCollumn] != null) {
                         boardCharacters[newLine][newCollumn].opacityProperty().set(0);
                         boardCharacters[newLine][newCollumn] = null;
                     }
+
+                    game.getBoard().getBoard().getCells()[newLine][newCollumn].setCellVisited(true);
                 }
                 else{
-                    if(game.getBoard().getBoard().getBoard()[newLine][newCollumn].getCharacter().getCharacter() == "Door")
+                    if(game.getBoard().getBoard().getCells()[newLine][newCollumn].getCharacter().getCharacter() == "Door")
                         screen.getStage().setScene(new FightScreenController(game).fightScreen());
                     else{
                         game.getBoard().getBoard().setLevel(game.getBoard().getBoard().getLevel() + 1);
@@ -157,5 +160,14 @@ public class BoardScreenController extends GameController {
                 }
             }
         }
+    }
+
+    private void verifyLimit(ProgressBar bar, double amount){
+        if(bar.getProgress()+amount >= 1.0)
+            bar.setProgress(1.0);
+        else if(bar.getProgress()+amount <= 0.0)
+            bar.setProgress(0.0);
+        else
+            bar.setProgress(bar.getProgress()+amount);
     }
 }
